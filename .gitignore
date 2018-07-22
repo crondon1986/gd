@@ -1,6 +1,7 @@
 /node_modules1
 /public/storage1
 /storage/*.key11
+/vendor
 /vendor1
 /.idea1
 .env1
