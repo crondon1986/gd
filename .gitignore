@@ -1,9 +1,9 @@
 /node_modules1
 /public/storage1
 /storage/*.key11
-/vendor11
+/vendor
 /.idea1
-.env1
+.env
 Procfile11
 Homestead.json11
 Homestead.yaml11
