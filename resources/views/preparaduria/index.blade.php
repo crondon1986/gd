@@ -16,7 +16,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Listado de Solicitudes de Preparaduría</h3>
-        @if( Auth::user()->id_perfil==5) 
+        @if( Auth::user()->id_perfil==5 && $x2==0)  
          <a href="{{route('CrearSolicitud')}}" class="btn btn-sm btn-info btn-flat pull-right">Crear Solicitud</a>
         @endif
        @foreach($datas as $p)

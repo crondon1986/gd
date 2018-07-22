@@ -59,7 +59,12 @@ class PreparaduriaController extends Controller
        {$x=0;}
         if(Auth::User()->id_perfil==5)
         {
-           
+            
+           /*  $Asignatura= Asignaturas::join('plazas','asignatura.id_asignatura','=','plazas.id_asignatura')->where('plazas.id_concurso',$datas[0]['attributes']['id_concurso'])->orderby('nombre','asc')->get();
+            // print_r($Asignatura);
+                $x1=count($Asignatura);*/
+                //echo "string".$x1;
+
             $data=Preparadurias::select('users.nombres','users.apellidos','escuela.nombre as escuela','dependencia.nombre_dependencia','preparaduria.*','asignatura.nombre')
                 ->join('estudiante','preparaduria.id_estudiante','=','estudiante.id_estudiante')
                 ->join('users','estudiante.id_user','=','users.id')
@@ -68,9 +73,47 @@ class PreparaduriaController extends Controller
                 ->join('asignatura','preparaduria.id_asignatura','=','asignatura.id_asignatura')
                 ->where('users.id',Auth::User()->id)    
                 ->paginate(10);
+
+               $x2=0;     
+            // if($x1==1)
+             //{
+                //$id_asig=$Asignatura[0]['attributes']['id_asignatura'];
+                //echo $id_asig;die();
+                $data1=Preparadurias::select('users.nombres','users.apellidos','escuela.nombre as escuela','dependencia.nombre_dependencia','preparaduria.*','asignatura.nombre')
+                ->join('estudiante','preparaduria.id_estudiante','=','estudiante.id_estudiante')
+                ->join('users','estudiante.id_user','=','users.id')
+                ->join('dependencia','estudiante.id_dependencia','=','dependencia.id_dependencia')
+                ->join('escuela','dependencia.id_escuela','=','escuela.id_escuela')
+                ->join('asignatura','preparaduria.id_asignatura','=','asignatura.id_asignatura')
+
+                ->where('users.id',Auth::User()->id)
+                ->where('preparaduria.id_periodo',1)->get();    
+            //    ->where('preparaduria.id_asignatura',Auth::User()->id)->get();    
+                $x2=count($data1);
+                 $x3=count($data);
+
+              //}
+
+
+
+        if ($x3==0) {
+            
+     //       $var2= new PreparaduriaController();
+       // $var2->create();
+   $Periodo=Periodos::pluck('nombre','id_periodo');
+     $Semestre=Semestre::pluck('nombre','id_semestre');
+     $Concurso=Concursos::where('id_periodo','1')->paginate(10);
+     $Asignatura= Asignaturas::join('plazas','asignatura.id_asignatura','=','plazas.id_asignatura')->where('plazas.id_concurso',$Concurso[0]['attributes']['id_concurso'])->orderby('nombre','asc')->pluck('nombre','asignatura.id_asignatura');
+     $Asignaturas= Asignaturas::pluck('nombre','id_asignatura as id_asignaturas');
+     return view('preparaduria/create')->with(['Semestre'=>$Semestre,'Periodo'=>$Periodo,'Asignatura'=>$Asignatura,'Asignaturas'=>$Asignaturas]);
+       }
+
+
             
             $id_periodo=$data[0]['attributes']['id_periodo'];
-        return view('preparaduria/index')->with(['datas'=>$datas,'data'=>$data,'x'=>$x,'id_periodo'=>$id_periodo]);
+        return view('preparaduria/index')->with(['datas'=>$datas,'data'=>$data,'x'=>$x,'id_periodo'=>$id_periodo,
+        'x2'=>$x2]);
+
           
         }
         if(Auth::User()->id_perfil==6)
@@ -178,10 +221,17 @@ class PreparaduriaController extends Controller
             'asignaturas' => 'required',
             'nota' => 'required',
             'periodo' => 'required',
-             'imgRecord' =>'required|required_with:'.$this->tipo_validos,
+            'f2'=>'required', // Materias Aplazadas
+            'f3'=>'required', // N° de Sem Como Preparador
+            'f4'=>'required', // N° de Articulos Publicados
+            'f5'=>'required', // N° de Trabajos Cientificos
+            'f6'=>'required', // N° de Cursos Adicionales
+            'f7'=>'required',// N° de Distinciones
+            'imgRecord' =>'required|required_with:'.$this->tipo_validos,
             'imgInscripcion' =>'required|required_with:'.$this->tipo_validos,
             'imgEstudio' =>'required|required_with:'.$this->tipo_validos,
             'imgCurriculum' =>'required|required_with:'.$this->tipo_validos,
+
             );    
         $mensajes=array(
             'id_asignatura.required'=>'La Asignatura a Dar Es Obligatoria',
@@ -191,6 +241,12 @@ class PreparaduriaController extends Controller
             'promedio.required'=>'El Promedio General Es  Obligatoria',
             'periodo.required'=>'El Periodo Academico Es  Obligatoria',
             'nota.required'=>'La Nota con que aprobo Es  Obligatoria',
+            'f2.required'=>'Las Materias Aplazadas es Obligatorio',
+            'f3.required'=>'El N° de Sem Como Preparador es Obligatorio',
+            'f4.required'=>'El N° de Articulos Publicados es Obligatorio',
+            'f5.required'=>'El N° de Trabajos Cientificos es Obligatorio',
+            'f6.required'=>'El N° de Cursos Adicionales es Obligatorio',
+            'f7.required'=>'El N° de Distinciones es Obligatorio',
             'imgRecord.required_with'=>'La imagen debe ser de los tipo '.$this->tipo_validos,
             'imgInscripcion.required_with'=>'La imagen debe ser de los tipo '.$this->tipo_validos,
             'imgEstudio.required_with'=>'La imagen debe ser de los tipo '.$this->tipo_validos,
@@ -229,10 +285,16 @@ class PreparaduriaController extends Controller
                     $Preparaduria->id_estudiante=$Estudiante[0]['attributes']['id_estudiante'];
                     $Preparaduria->id_asignatura=$request->id_asignatura;
                     $Preparaduria->semestre=$request->semestre;
+                    $Preparaduria->f2=$request->f2;
+                    $Preparaduria->f3=$request->f3;
+                    $Preparaduria->f4=$request->f4;
+                    $Preparaduria->f5=$request->f5;
+                    $Preparaduria->f6=$request->f6;
+                    $Preparaduria->f7=$request->f7;
+                    $Preparaduria->condicion=$request->condicion;
                     $Preparaduria->creditos_aprobados=$request->credito;
                     $Preparaduria->promedio_general=str_replace(',','.',$request->promedio);
-
-                    $Preparaduria->id_estados="1";
+                    $Preparaduria->id_estados="1"; // creado
                     $Preparaduria->nota=str_replace(',','.',$request->nota);
                     $Preparaduria->id_periodo=$request->periodo;
                     $Preparaduria->numero=$numero;
@@ -276,6 +338,13 @@ class PreparaduriaController extends Controller
                     $Preparaduria->id_estados="1";
                     $Preparaduria->nota=str_replace(',','.',$request->nota);
                     $Preparaduria->id_periodo=$request->periodo;
+                     $Preparaduria->f2=$request->f2;
+                    $Preparaduria->f3=$request->f3;
+                    $Preparaduria->f4=$request->f4;
+                    $Preparaduria->f5=$request->f5;
+                    $Preparaduria->f6=$request->f6;
+                    $Preparaduria->f7=$request->f7;
+                    $Preparaduria->condicion=$request->condicion;
                     $Preparaduria->numero=$numero;
                     $Preparaduria->anio=$year;
                     $Preparaduria->record=$request->imgRecord; 
@@ -713,7 +782,7 @@ class PreparaduriaController extends Controller
         $Preparador=Preparadurias::where('id_preparaduria',$id)->get();
         $Estudiante= Estudiante::where('id_estudiante',$Preparador[0]['attributes']['id_estudiante'])->get();
         $User=User::where('id',$Estudiante[0]['attributes']['id_user'])->get();   
-        return view('preparaduria/evaluar')->with(['id'=>$id,'User'=>$User]);
+        return view('preparaduria/evaluar')->with(['id'=>$id,'User'=>$User, 'Preparador'=>$Preparador]);
     }
       public function Rechazado ($id)
     {

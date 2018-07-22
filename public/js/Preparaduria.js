@@ -27,7 +27,16 @@ $("#CrearPreparaduria").click(function ()
                         'imgRecord': $('input[name=imgRecord]').val(),
                         'imgInscripcion': $('input[name=imgInscripcion]').val(),
                         'imgEstudio': $('input[name=imgEstudio]').val(),
-                        'imgCurriculum': $('input[name=imgCurriculum]').val()
+                        'imgCurriculum': $('input[name=imgCurriculum]').val(),
+
+                        'f2': $('input[name=f2').val(), // Materias Aplazadas
+                        'f3': $('input[name=f3').val(), // N° de Sem Como Preparador
+                        'f4': $('input[name=f4').val(), // N° de Articulos Publicados
+                        'f5': $('input[name=f5').val(), // N° de Trabajos Cientificos
+                        'f6': $('input[name=f6').val(), // N° de Cursos Adicionales
+                        'f7': $('input[name=f7').val(), // N° de Distinciones
+                        'condicion': $('select[name=condicion]').val()
+
                   },
             success: function (data) 
             {

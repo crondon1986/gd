@@ -52,8 +52,8 @@
                             <td class="sorting_1">{{$item->cupo_asignado}}</td>
                             <td class="sorting_1">{{$item->limite}}</td>
                             <td>
-                                <a class="btn btn-info" onclick="javascript:PdfModalRequisitos({{$item->id_concurso}})" ><i class="fa fa-fw fa-eye" title="Requisitos"></i></a>
-                                <a class="btn btn-info" onclick="javascript:PdfModalPlazas({{$item->id_concurso}})"><i class="fa fa-fw fa-eye" title="Plazas"></i></a>
+                                <a title="Requisitos y Plazas" class="btn btn-info" onclick="javascript:PdfModalRequisitos({{$item->id_concurso}})" ><i class="fa fa-fw fa-eye" ></i></a>
+                               <!-- <a class="btn btn-info" onclick="javascript:PdfModalPlazas({{$item->id_concurso}})"><i class="fa fa-fw fa-eye" title="Plazas"></i></a>-->
                             </td>    
                     @endforeach
                 </tr>

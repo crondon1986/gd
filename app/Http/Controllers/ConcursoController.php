@@ -88,7 +88,17 @@ class ConcursoController extends Controller
                 ->join('periodo','concurso.id_periodo','periodo.id_periodo')
                 ->where('concurso.id_concurso',$request->id_concurso)
                 ->get();
-          view()->share(['data'=>$data]);//VARIABLE GLOBAL PRODUCTOS
+          //view()->share(['data'=>$data]);//VARIABLE GLOBAL PRODUCTOS
+
+                
+$Plazas=Plazas::select('asignatura.nombre as asignatura')->join('asignatura','plazas.id_asignatura','=','asignatura.id_asignatura')
+                ->join('concurso','plazas.id_concurso','=','concurso.id_concurso')
+                ->where('concurso.id_concurso',$request->id_concurso)
+                ->orderby('asignatura.nombre','asc')
+                ->get();
+          view()->share(['data'=>$data,'Plazas'=>$Plazas]);//VARIABLE GLOBAL PRODUCTOS
+
+
      if($request->has('descargar')){
            $pdf = PDF::loadView('vista-html-requisitos-pdf');//CARGO LA VISTA
            $pdf->output();

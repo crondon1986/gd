@@ -60,6 +60,59 @@
                                 <input type="number" min=6 step="any" class="form-control" id="promedio" name="promedio" placeholder="Promedio General" required>
                             </div>
                         </div>
+
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="puntaje">N° de Materias Aplazadas</label>
+                           <input type="number" min=0 name="f2" id="f2" class="form-control" required>
+                            </div>
+                        </div>
+                <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="puntaje">N° de Sem Como Preparador</label>
+                           <input type="number" min=0 name="f3" id="f3" class="form-control">
+                            </div>
+                        </div>
+
+                <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="puntaje">N° de Articulos Publicados</label>
+                           <input type="number" min=0 name="f4" id="f4" class="form-control">
+                            </div>
+                        </div>
+                <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="puntaje">N° de Trabajos Cientificos</label>
+                           <input type="number" min=0 name="f5" id="f5" class="form-control">
+                            </div>
+                        </div>
+                <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="puntaje">N° de Cursos Adicionales</label>
+                           <input type="number" min=0 name="f6" id="f6" class="form-control">
+                            </div>
+                        </div>
+                <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="puntaje">N° de Distinciones</label>
+                           <input type="number" min=0 name="f7" id="f7" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="observacion">Condición</label>
+                             <select class="form-control" name="condicion" id="condicion"> 
+                                    <option>Seleccione Condicion </option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Nuevo">Nuevo</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
                         <div class="col-sm-12">
                         <div class="form-group">
                   <label>Asignaturas Cursadas Semestre Actual</label>
@@ -111,6 +164,11 @@
           </div>
 
  </section>
+
+
+
+
+
 <!--     Modales           -->
     
 <div aria-hidden="true" aria-labelledby="myModalLabel" id="pleaseWaitDialog" 
