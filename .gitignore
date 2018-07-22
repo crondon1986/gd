@@ -1,10 +1,10 @@
-/node_modules
-/public/storage
-/storage/*.key
-/vendor
-/.idea
-.env
-Procfile
-Homestead.json
-Homestead.yaml
+/node_modules1
+/public/storage1
+/storage/*.key11
+/vendor11
+/.idea1
+.env1
+Procfile11
+Homestead.json11
+Homestead.yaml11
 
