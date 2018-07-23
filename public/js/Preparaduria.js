@@ -285,6 +285,17 @@ function PdfModalCirular(id_documento){
   $('#myModal [class= "modal-title"]').empty().append('Circular');
   $('#myModal').modal("show");
 }
+
+function PdfModalCirular_visto(id_documento){
+  //alert(id_documento);
+  var pdf='pdf';
+  var varurl=$('#url_base').val()+'/vista-html-pdf?id_documento='+id_documento+'&descargar='+pdf;
+ $("#documento1")[0].contentWindow.location.reload(true);
+ $("#documento1").attr('src',varurl);
+  $('#myModal_circular [class= "modal-title"]').empty().append('Circular');
+  $('#myModal_circular').modal("show");
+}
+
 function PdfModalCirularfirma(id_documento){
   //alert(id_documento);
   var pdf='pdf';
@@ -387,6 +398,19 @@ $('#Enviar_circular').click(function(){
       });
 
 })
+
+}
+
+
+ function cerrar_modal (id_documento){
+  //alert(id_documento);
+  var pdf='pdf';
+
+  var varurl='documentos/visto/'+id_documento; 
+   location.href =varurl;
+// $("#documento").attr('src',varurl);
+ // $('#myModal [class= "modal-title"]').empty().append('Oficio de Contratación');
+ // $('#myModal').modal("show");
 
 }
 

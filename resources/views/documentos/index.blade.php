@@ -104,9 +104,9 @@
                         <td>{{$item->created_at}}</td>
                         <td>
                         @if($item->id_subcategoria==1)
-                        
-                        <a class="btn btn-info" href="{{ url('documentos/visto/'.$item->id_documento) }}"><i class="fa fa-fw fa-eye"></i></a>
-                        <a class="btn btn-success" href="{{ url('ubicacion/show/'.$item->id_documento) }}"><i class="fa fa-fw fa-map-marker"></i></a>
+                         <a class="btn btn-info" onclick="javascript:PdfModalCirular_visto({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title="Ver"></i></a>
+                        <!--<a  title=" Ver " class="btn btn-info" href="{{ url('documentos/visto/'.$item->id_documento) }}"><i class="fa fa-fw fa-eye"></i></a>-->
+                        <a title=" Ubicación " class="btn btn-success" href="{{ url('ubicacion/show/'.$item->id_documento) }}"><i class="fa fa-fw fa-map-marker"></i></a>
                         
                         @else
                          <!--  <a class="btn btn-info" href="{{  route('OficioFirmado',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>-->
@@ -654,6 +654,43 @@
           <!-- /.box -->
         </div>
       </div>
+
+<!--Modal circular-->
+<!--<a  title=" Ver " class="btn btn-info" ><i class="fa fa-fw fa-eye"></i></a>-->
+
+<div aria-hidden="true"  tabindex="-1" aria-labelledby="myModalLabel" id="myModal_circular" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header box-primary">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Solicitud de Preparaduría</h4>
+            </div>
+            <div class="modal-body" >
+              
+                <div class="form-group col-xs-12" >
+                    <iframe id="documento1" src="" width="860" height="600" ></iframe>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="modal-footer">
+                <div class="box-footer col-xs-12 ">
+                    <button  type="button"  class="btn btn-danger" aling="center" id="cerrar_circular" onclick="javascript:cerrar_modal({{$item->id_documento}})"> <a href="{{ url('documentos/visto/'.$item->id_documento) }}">Cerrar</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
         <!-- Modal -->
 <div aria-hidden="true"  tabindex="-1" aria-labelledby="myModalLabel" id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -668,9 +705,15 @@
                     <iframe id="documento" src="" width="860" height="600" ></iframe>
                 </div>
             </div>
+
+
+
+
+
+
             <div class="modal-footer">
                 <div class="box-footer col-xs-12 ">
-                    <button type="button" class="btn btn-danger" aling="center" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" aling="center"  data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
