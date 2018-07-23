@@ -11,7 +11,7 @@
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-user"></i> Modulo</a></li>
+        <li><a href="#"><i class="fa"></i> Modulo</a></li>
         <li class="active">Gestión de Documentos</li>
       </ol>
     </section>
@@ -27,7 +27,7 @@
            @endif
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
-<!--                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">-->
+<!--                  <input type="text" name="table_search" class="form-control pull-left" placeholder="Search">-->
 
                   <div class="input-group-btn">
 <!--                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
@@ -44,8 +44,9 @@
                   <th>Id</th>
                   <th>Código</th>
                   <th>Descripcion</th>
-                  <th>Estatus</th>
+                 
                   <th>Documento</th>
+                   <th>Estatus</th>
                   
                  <th>Fecha Creado</th>
                   <th>Acción</th>
@@ -59,12 +60,13 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-info">{{$item->estados}}</span></td>
+                    
                     @if($item->id_subcategoria==1)
                         <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>
                     @else
                         <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>
                     @endif
+                        <td><span class="label label-info">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                         @if($item->id_subcategoria==1)
@@ -95,9 +97,10 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                        
                            @if($item->id_subcategoria==1)                       
                            <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif
+                           <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                         @if($item->id_subcategoria==1)
@@ -119,8 +122,9 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                       
                    @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif
+                    <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
@@ -142,11 +146,12 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                       
                     @if($item->id_subcategoria==1)                        
                     <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    
 
                     @endif
+                     <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                           <td>
                          @if($item->id_subcategoria==1)
@@ -176,9 +181,10 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                        
                      @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        
                      <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif
+                     <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                            <!-- <a class="btn btn-info" href="{{  route('vistaHTMLPDF',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>-->
@@ -189,12 +195,13 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-danger">{{$item->estados}}</span></td>
+                     
                 @if($item->id_subcategoria==1)                        
                 <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span>
                 </td>                    @else                        
                 <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                 
                 @endif
+                   <td><span class="label label-danger">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                            <!-- <a class="btn btn-info" href="{{  route('vistaHTMLPDF',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>-->
@@ -207,8 +214,9 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-danger">{{$item->estados}}</span></td>
+                        
                      @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif
+                        <td><span class="label label-danger">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                             <a class="btn btn-warning" href="{{ route('CorregirDocumento',['id_documento'=>$item->id_documento]) }}"><i class="fa fa-pencil"></i></a>
@@ -221,8 +229,8 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-info">{{$item->estados}}</span></td>
-                          <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                                       
+                        
+                          <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td> <td><span class="label label-info">{{$item->estados}}</span></td>                                      
                         <td>{{$item->created_at}}</td>
                           @if($item->id_subcategoria==1)
                         <td>
@@ -242,8 +250,9 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-info">{{$item->estados}}</span></td>
-                                               <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                                             
+                       
+                                               <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>  
+                         <td><span class="label label-info">{{$item->estados}}</span></td>                                           
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1) 
@@ -259,8 +268,9 @@
                       <td class="sorting_1">{{$item->id_documento}}</td>
                       <td>{{$item->codigo_plantilla}}</td>
                       <td>{{$item->descripcion_documento}}</td>
-                      <td><span class="label label-primary">{{$item->estados}}</span></td>
+                     
                       <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span>
+                         <td><span class="label label-primary">{{$item->estados}}</span></td>
                       <td>{{$item->created_at}}</td> 
                       <td>
                      @if($item->id_subcategoria==1) 
@@ -286,9 +296,9 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-default">{{$item->estados}}</span></td>
+                       
                         <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>              
-
+                         <td><span class="label label-default">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                           @if($item->id_subcategoria==1)
@@ -314,9 +324,9 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-default">{{$item->estados}}</span></td>
+                        
                         <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>              
-                                          
+                        <td><span class="label label-default">{{$item->estados}}</span></td>                  
                         <td>{{$item->created_at}}</td>
                         <td>
                         @if($item->id_subcategoria==1)
@@ -338,8 +348,10 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-success">{{$item->estados}}</span></td>
-                         @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif<td>{{$item->created_at}}</td>
+                        
+                         @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif<td>
+                          <td><span class="label label-success">{{$item->estados}}</span></td>
+                          {{$item->created_at}}</td>
                         <td>
                         <!--<a class="btn btn-info" href="{{  route('vistaHTMLPDFFirmado',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>-->
                         @if($item->id_subcategoria==1) 
@@ -359,8 +371,11 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-success">{{$item->estados}}</span></td>
-                         @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif<td>{{$item->created_at}}</td>
+                        
+                         @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                   
+                          @endif<td>
+                            <td><span class="label label-success">{{$item->estados}}</span></td>
+                            {{$item->created_at}}</td>
                         <td>
                         <!--<a class="btn btn-info" href="{{  route('vistaHTMLPDFFirmado',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>-->
                         @if($item->id_subcategoria==1) 
@@ -376,10 +391,11 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-primary">{{$item->estados}}</span></td>
+                        
                    @if($item->id_subcategoria==1)                       
                    <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        
                    <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif
+                   <td><span class="label label-primary">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
@@ -387,7 +403,7 @@
                         <a class="btn btn-info" href="{{  route('vistaHTMLPDF',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>
                        
                         @else
-                         <a class="btn btn-info pull-right" onclick="javascript:PDFOficioPreparadores({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
+                         <a class="btn btn-info pull-left" onclick="javascript:PDFOficioPreparadores({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
                        
                         @endif
                         </td>
@@ -396,8 +412,9 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-primary">{{$item->estados}}</span></td>
+                       
                    @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif
+                         <td><span class="label label-primary">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
@@ -405,7 +422,7 @@
                         <a class="btn btn-info" href="{{  route('vistaHTMLPDF',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>
                        
                         @else
-                         <a class="btn btn-info pull-right" onclick="javascript:PDFOficioPreparadores({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
+                         <a class="btn btn-info pull-left" onclick="javascript:PDFOficioPreparadores({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
                         
                         
                         @endif
@@ -415,13 +432,14 @@
                        @if($item->id_estados==10 && Auth::user()->id_perfil==6)
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
-                        <td>{{$item->descripcion_documento}}</td>
+                       
                         <td><span class="label label-success">{{$item->estados}}</span></td>
                    @if($item->id_subcategoria==1)                        
                    <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                   
                    @else                       
                    <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                   
                    @endif
+                        <td>{{$item->descripcion_documento}}</td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
@@ -429,7 +447,7 @@
                         <a class="btn btn-info" href="{{  route('vistaHTMLPDF',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>
                        
                         @else
-                         <a class="btn btn-info pull-right" onclick="javascript:PDFOficioPreparadores({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
+                         <a class="btn btn-info pull-left" onclick="javascript:PDFOficioPreparadores({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
                       
                         @endif
                     </td>
@@ -438,8 +456,9 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-primary">{{$item->estados}}</span></td>
+                        
                    @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif
+                       <td><span class="label label-primary">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
@@ -447,7 +466,7 @@
                         <a class="btn btn-info" href="{{  route('vistaHTMLPDF',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>
                        
                         @else
-                         <a class="btn btn-info pull-right" onclick="javascript:PDFOficioPreparadores({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
+                         <a class="btn btn-info pull-left" onclick="javascript:PDFOficioPreparadores({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
                        
                         @endif
                         </td>
@@ -456,12 +475,13 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                       
                    @if($item->id_subcategoria==1)                        
                    <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                   
                    @else                       
                    <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                   
                    @endif
+                        <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
@@ -470,8 +490,8 @@
                        
                         @else
 
-                       <!-- <a class="btn btn-info pull-right" onclick="javascript:PDFPreparaduriaVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i>Resultados</a>-->
-                         <a class="btn btn-info pull-right" onclick="javascript:PDFPreparaduriaSolicitudVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
+                       <!-- <a class="btn btn-info pull-left" onclick="javascript:PDFPreparaduriaVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i>Resultados</a>-->
+                         <a class="btn btn-info pull-left" onclick="javascript:PDFPreparaduriaSolicitudVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
                         
                         @endif
                         </td>
@@ -480,12 +500,13 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                        
                    @if($item->id_subcategoria==1)                        
                    <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                   
                    @else                       
                    <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                   
                    @endif
+                        <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
@@ -493,8 +514,8 @@
                         <a class="btn btn-info" href="{{  route('vistaHTMLPDF',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>
                        
                         @else
-                       <!-- <a class="btn btn-info pull-right" onclick="javascript:PDFPreparaduriaVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i>Resultados</a>-->
-                         <a class="btn btn-info pull-right" onclick="javascript:PDFPreparaduriaSolicitudVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
+                       <!-- <a class="btn btn-info pull-left" onclick="javascript:PDFPreparaduriaVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i>Resultados</a>-->
+                         <a class="btn btn-info pull-left" onclick="javascript:PDFPreparaduriaSolicitudVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
                        
                         @endif
                          </td>
@@ -504,18 +525,19 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                       
                    @if($item->id_subcategoria==1)                        
                    <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                   
                    @else                       
                    <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                   
                    @endif
+                        <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
                             <a class="btn btn-info" href="{{  route('vistaHTMLPDF',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>
                         @else
-                            <a class="btn btn-info pull-right" onclick="javascript:PDFPreparaduriaSolicitudVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
+                            <a class="btn btn-info pull-left" onclick="javascript:PDFPreparaduriaSolicitudVerificado({{$id_periodo}})" ><i class="fa fa-fw fa-eye"></i></a>
                         
                         @endif
                         </td>
@@ -524,12 +546,13 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                        
                    @if($item->id_subcategoria==1)                        
                    <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                   
                    @else                       
                    <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                   
                    @endif
+                   <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)
@@ -546,8 +569,9 @@
                       <td class="sorting_1">{{$item->id_documento}}</td>
                       <td>{{$item->codigo_plantilla}}</td>
                       <td>{{$item->descripcion_documento}}</td>
-                      <td><span class="label label-primary">{{$item->estados}}</span></td>
+                     
                       <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span>
+                         <td><span class="label label-primary">{{$item->estados}}</span></td>
                       <td>{{$item->created_at}}</td> 
                     <td>
                  
@@ -570,12 +594,13 @@
                         <td class="sorting_1">{{$item->id_documento}}</td>
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
+                       
                    @if($item->id_subcategoria==1)                        
                    <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                   
                    @else                       
                    <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                   
                    @endif
+                        <td><span class="label label-warning">{{$item->estados}}</span></td>
                         <td>{{$item->created_at}}</td>
                         <td>
                          @if($item->id_subcategoria==1)

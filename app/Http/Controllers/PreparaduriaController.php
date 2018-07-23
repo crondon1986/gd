@@ -105,7 +105,7 @@ class PreparaduriaController extends Controller
      $Concurso=Concursos::where('id_periodo','1')->paginate(10);
      $Asignatura= Asignaturas::join('plazas','asignatura.id_asignatura','=','plazas.id_asignatura')->where('plazas.id_concurso',$Concurso[0]['attributes']['id_concurso'])->orderby('nombre','asc')->pluck('nombre','asignatura.id_asignatura');
      $Asignaturas= Asignaturas::pluck('nombre','id_asignatura as id_asignaturas');
-     return view('preparaduria/create')->with(['Semestre'=>$Semestre,'Periodo'=>$Periodo,'Asignatura'=>$Asignatura,'Asignaturas'=>$Asignaturas]);
+     return view('preparaduria/create')->with(['Semestre'=>$Semestre,'Periodo'=>$Periodo,'Asignatura'=>$Asignatura,'Asignaturas'=>$Asignaturas]); 
        }
 
 

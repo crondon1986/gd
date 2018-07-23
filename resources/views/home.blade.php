@@ -36,7 +36,7 @@
             <span class="info-box-icon bg-red"><i class="fa fa fa-files-o"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Por Correcion</span>
+              <span class="info-box-text">Por Corrección</span>
               <span class="info-box-number">{{$PorCorrecion}}</span>
             </div>
             <!-- /.info-box-content -->

@@ -261,7 +261,14 @@
             <li><a href="{{ route('Documentos') }}"><i class="fa fa-circle-o"></i>Por Enviar</a></li>
           </ul>
         </li>-->
-            <li id="sessionKiller2"><a href="javascript:void(0);"><i class="fa fa-sign-out"></i> <span>Salir</span></a></li>
+
+
+         
+
+
+
+            <li id="sessionKiller2"><a  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" href="javascript:void(0);"><i class="fa fa-sign-out"></i> <span>Salir</span></a></li>
 
       </ul>
 
