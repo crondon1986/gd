@@ -71,9 +71,10 @@ $("#id_subcategoria").change(function (event) {
 
 });
 $("#id_itemsubcategoria").change(function (event) 
-{
+{  
      $('#pleaseWaitDialog').modal('show');
     var subcategoria= $('select[name=id_itemsubcategoria]').val();
+     alert(subcategoria)
     if(subcategoria<5)
      {
         $('#circular').show();
@@ -81,24 +82,25 @@ $("#id_itemsubcategoria").change(function (event)
         $('#oficio').hide();
          $('#estructurado').hide();
      }
-     else
-    if(subcategoria==9)
+    if(subcategoria==9)//oficio
     {
         $('#libre').show(); 
         $('#pleaseWaitDialog').modal('hide');
         $('#circular').hide();    
         $('#estructurado').hide();
     }
-    else
-    if(subcategoria==10)
+
+    if(subcategoria==11)//convocatorias
     {
-        $('#estructurado').show(); 
+         $('#convocatoria').show();         
+        $('#estructurado').hide(); 
         $('#pleaseWaitDialog').modal('hide');
         $('#libre').hide(); 
           $('#circular').hide(); 
     }
 
 });
+
 $("#id_dependencia").prop('selectedIndex',0);
 $("#id_dependencia").change(function (event) {
    var id_perfil=$('select[name=id_perfil]').val();

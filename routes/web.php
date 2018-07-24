@@ -42,6 +42,7 @@ Route::get('documentos/enviados',['as'=>'DocumentosEnviados','uses'=>'DocumentoC
 
 Route::get('documentos/create',['as'=>'CrearDocumento','uses'=>'DocumentoController@create']);
 Route::post('documentos/agregarDocumento','DocumentoController@AgregarDocumento' );
+Route::post('documentos/agregarDocumentoConvocatoria','DocumentoController@AgregarDocumentoConvocatoria' );
 Route::put('documentos/corregirDocumento/{id}','DocumentoController@CorregirDocumentos' );
 Route::get('documentos/{id}','DocumentoController@GetSubcategoria');
 Route::get('documentos/ItemSubcategoria/{id}','DocumentoController@GetItemSubcategoria');

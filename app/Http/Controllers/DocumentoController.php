@@ -9,6 +9,7 @@ use App\Categoria;
 use App\Subcategoria;
 use App\Itemsubcategoria;
 use App\Circular;
+use App\Convocatoria;
 use App\Documento;
 use App\User;
 use App\Dependencia;
@@ -84,8 +85,28 @@ class DocumentoController extends Controller
         $Dependencia= Dependencia::pluck('nombre_dependencia','id_dependencia');
        // $Rol=Perfil::pluck('nombre_perfil','id_perfil');
        // return View::make('usuarios/create')->with(['Ciudad' => $Ciudades,'Pais' => $Pais,'States' => $States,'Municipios'=>$Municipios,'Dependencia'=>$Dependencia,'Rol'=>$Rol]); 
+        if(count($data)>0){
         return view('documentos/index')->with(['data'=>$data,'id_periodo'=>$id_periodo
             ,'Dependencia'=>$Dependencia,'destinos'=>$datad]);
+        }else{
+            /************FUNCION CREAR DOCUMENTO*/
+            //$this->create();
+             $Categoria=Categoria::pluck('nombre_categoria','id_categoria');
+        $SubCategoria=Subcategoria::pluck('nombre_subcategoria','id_subcategoria');
+        $ItemSubCategoria= Itemsubcategoria::pluck('nombre_itemsubcategoria','id_itemsubcategoria');
+        $Dependencia=Dependencias::pluck('nombre','id_dependencias');
+        $TipoOficio=TipoOficio::pluck('nombre','id_tipo_oficio');
+        $Perfil=Perfil::pluck('nombre_perfil','id_perfil');
+        $Profesor = User::select(DB::table('users')
+                ->raw("CONCAT(users.nombres,' ',users.apellidos)  AS nombre"),'id')->where('id_dependencia',Auth::user()->id_dependencia)->where('id_perfil','4')
+                ->pluck('nombre','id'); 
+        $Asignatura= Asignaturas::pluck('nombre','id_asignatura');
+        $Usuarios = User::select(DB::table('users')
+                ->raw("CONCAT(users.nombres,' ',users.apellidos)  AS fullname"),'id')->where('id_perfil','6')
+                ->pluck('fullname','id'); 
+        return view('documentos/create')->with(['Asignatura'=>$Asignatura,'Profesor'=>$Profesor,'TipoOficio'=>$TipoOficio,'Usuarios'=>$Usuarios,'Perfil'=>$Perfil,'Dependencia'=>$Dependencia,'Categoria'=>$Categoria,'SubCategoria'=>$SubCategoria,'ItemSubCategoria'=>$ItemSubCategoria]);
+        }
+
     }
     public function create()
     {
@@ -197,6 +218,148 @@ class DocumentoController extends Controller
                 $Circular->cuerpo_circular =$request->cuerpo;
                 $Circular->numero=$numero;
                 $Circular->anio_circular=$year;
+                $Circular->save();
+            }
+        $Ruta=new Ruta;
+            if($id_perfil==2){//jefe de departamento
+               $Documento->id_estados="1";
+                $Ruta=new Ruta;
+                $Ruta->id_estado=$Documento->id_estados;
+                $Ruta->id_documento=$Circular->id_documento;
+                $Ruta->id_dependencia=$Documento->id_dependencia_c;
+                $Ruta->id_user=Auth::user()->id;
+                $Ruta->fecha=date('Y-m-d');
+                $Ruta->save();
+               $Documento->id_estados="6";
+                $Ruta=new Ruta;
+            $Ruta->id_estado=$Documento->id_estados;
+            $Ruta->id_documento=$Circular->id_documento;
+            $Ruta->id_dependencia=$Documento->id_dependencia_c;
+            $Ruta->id_user=Auth::user()->id;
+            $Ruta->fecha=date('Y-m-d');
+            $Ruta->save();
+            }else{
+                $Documento->id_estados="1";
+                 //$Ruta=new Ruta;
+            $Ruta->id_estado=$Documento->id_estados;
+            $Ruta->id_documento=$Circular->id_documento;
+            $Ruta->id_dependencia=$Documento->id_dependencia_c;
+            $Ruta->id_user=Auth::user()->id;
+            $Ruta->fecha=date('Y-m-d');
+            $Ruta->save();
+            }
+
+           
+            DB::commit();
+            $success=array('success'=>true,'mensaje'=>'Documento Creado con Exito!!'.$Documento->codigo_plantilla);
+            return response()->json($success);
+    }
+       }
+
+
+public function AgregarDocumentoConvocatoria(Request $request){
+         $rules = array(
+            'descripcion_documento' => 'required',
+            'para' => 'required',
+            'cuerpo' => 'required',
+            'id_categoria' => 'required',
+            'id_subcategoria' => 'required',
+            'id_itemsubcategoria' =>'required',
+           
+            
+            );    
+        $mensajes=array(
+            'id_categoria.required'=>'La Categoria Es Obligatoria',
+            'id_subcategoria.required'=>'El Tipo De Documento Es  Obligatorio',
+            'id_itemsubcategoria.required'=>'La Plantilla Es  Obligatoria',
+            'descripcion_documento.required'=>'Descripcion del Documento Es  Obligatoria',
+            'para.required'=>'Para Es  Obligatorio',
+            'cuerpo.required'=>'El Cuerpo del Documento es Obligatorio',
+             ); 
+        $validator = Validator::make(Input::all(), $rules,$mensajes);
+        if ($validator->fails())
+              return Response::json(array('success'=>false,'errors' => $validator->errors()->all()));
+        else 
+        {
+            DB::beginTransaction();
+            $User=User::where('id',Auth::user()->id)->get();
+            $IdDependencia=$User[0]['attributes']['id_dependencia'];
+            $id_perfil=$User[0]['attributes']['id_perfil'];
+            $Dependencia=Dependencia::where('id_dependencia',$IdDependencia)->get();
+            $Profesor=Profesor::select('users.nombres','users.apellidos','users.sexo')
+                    ->join('users','profesor.id_user','=','users.id')
+                    ->where('profesor.id_dependencia',$Dependencia[0]['attributes']['id_dependencia'])
+                    ->where('users.id_perfil','2')->get();
+            $codigo_documento_generado=time();// codigo aleatori
+            $Documento = new Documento();
+            $Documento->id_dependencia_c= Auth::user()->id_dependencia;// id de la dependencia que crea el documento""
+            $Documento->id_usuario=Auth::user()->id;
+            $Documento->id_categoria=$request->id_categoria;
+            $Documento->id_subcategoria=$request->id_subcategoria;
+            $Documento->id_itemsubcategoria=$request->id_itemsubcategoria;
+            
+            if($id_perfil==2){//jefe de departamento
+               $Documento->id_estados="6";
+            }else{
+                $Documento->id_estados="1";
+            }
+            
+            
+            $Documento->codigo_plantilla=$codigo_documento_generado;
+            $Documento->descripcion_documento=$request->descripcion_documento;
+            $Documento->save();
+            $Circular=new Convocatoria;
+            $year=date('Y');
+            $Verificar=Documento::select('convocatoria.numero')
+                                  ->join('convocatoria','documento.id_documento','=','convocatoria.id_documento')
+                                  ->where('convocatoria.anio_convocatoria',$year)
+                                  ->where('documento.id_dependencia_c',Auth::user()->id_dependencia)
+                                  ->get()->toArray();
+            $Total=count($Verificar);
+            $Sexo=$Profesor[0]['attributes']['sexo'];
+            if($Sexo=='Femenino')
+            {
+                $de="PROFA. ". $Profesor[0]['attributes']['nombres'].' '.$Profesor[0]['attributes']['apellidos'];
+            }
+            if($Sexo=='Masculino')
+            {
+                $de="PROF. ". $Profesor[0]['attributes']['nombres'].' '.$Profesor[0]['attributes']['apellidos'];
+            }    
+            if($Total>0)
+            {   
+                $numero=$Total+1;
+                $Circular->id_documento=$Documento->id_documento;
+                $Circular->id_itemsubcategoria=$request->id_itemsubcategoria;
+                $Circular->nota_convocatoria=$request->descripcion_documento;
+                $Circular->para_convocatoria=$request->para;
+                $Circular->de_convocatoria=$de;
+                $Circular->cuerpo_convocatoria =$request->cuerpo;
+                $Circular->numero=$numero;
+                $Circular->anio_convocatoria=$year;
+                $Circular->save();
+            }
+            else
+            if($Total==0)
+            {   
+                /*$numero=1;
+                $Circular->id_documento=$Documento->id_documento;
+                $Circular->id_itemsubcategoria=$request->id_itemsubcategoria;
+                $Circular->nota_circular=$request->descripcion_documento;
+                $Circular->para_circular=$request->para;
+                $Circular->de_circular=$de;
+                $Circular->cuerpo_circular =$request->cuerpo;
+                $Circular->numero=$numero;
+                $Circular->anio_circular=$year;
+                $Circular->save();*/
+                $numero=1;
+                $Circular->id_documento=$Documento->id_documento;
+                $Circular->id_itemsubcategoria=$request->id_itemsubcategoria;
+                $Circular->nota_convocatoria=$request->descripcion_documento;
+                $Circular->para_convocatoria=$request->para;
+                $Circular->de_convocatoria=$de;
+                $Circular->cuerpo_convocatoria =$request->cuerpo;
+                $Circular->numero=$numero;
+                $Circular->anio_convocatoria=$year;
                 $Circular->save();
             }
         $Ruta=new Ruta;

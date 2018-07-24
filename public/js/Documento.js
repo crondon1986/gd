@@ -43,6 +43,57 @@ $("#CrearDocumento").click(function ()
             }
         });
  });
+
+$("#CrearDocumento_convocatoria").click(function () 
+{    var contenido = CKEDITOR.instances['editor_convocatoria'].getData();//estraer el html
+  $('#cuerpo_convocatoria').val(contenido);
+        $('#pleaseWaitDialog').modal('show');
+         $.ajax
+        ({
+            type: 'post',
+           url:  $('#url_base').val()+'/documentos/agregarDocumentoConvocatoria',
+            data: {
+                        '_token': $('input[name=_token]').val(),
+                        'descripcion_documento': $('input[name=descripcion_documento_convocatoria]').val(),
+                        'para': $('input[name=para_convocatoria]').val(),
+                        'id_categoria': $('select[name=id_categoria]').val(),
+                        'id_subcategoria': $('select[name=id_subcategoria]').val(),
+                        'id_itemsubcategoria': $('select[name=id_itemsubcategoria]').val(),
+                        'cuerpo':$('#cuerpo_convocatoria').val()
+                  },
+            success: function (data) 
+            {
+                if ((data.success==true)) 
+                {
+                   $('#pleaseWaitDialog').modal('hide');
+                   $('#modalerrorbody').empty().append(data.mensaje);
+                   $('#modalError [class= "modal-dialog  modal-sm"]').addClass('modal-success');
+                   $('#modalError [class= "modal-title"]').empty().append('Informacion');
+                   $('#modalError').modal('show');
+                   location.href=$('#url_base').val()+'/documentos';
+                }
+                else 
+                {
+                   var mensaje='';
+                   for(var i=0;i<data.errors.length;i++)
+                   {
+                        mensaje+=data.errors[i]+'<br>';
+                   }
+                   $('#pleaseWaitDialog').modal('hide');
+                   $('#modalerrorbody').empty().append(mensaje);
+                   $('#modalError [class= "modal-dialog  modal-sm"]').addClass('modal-danger');
+                   $('#modalError [class= "modal-title"]').empty().append('Ha ocurrido un error');
+                   $('#modalError').modal('show');
+                   
+                }
+            }
+        });
+ });
+
+
+
+
+
 $("#CrearOficioContratacion").click(function () 
 {
         $('#pleaseWaitDialog').modal('show');

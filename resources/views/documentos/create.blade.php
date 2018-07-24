@@ -86,6 +86,45 @@
           
           </div>
 
+<div class="box box-primary" style="display:none;" id="convocatoria">
+            <div class="box-header with-border">
+              <h3 class="box-title">Convocatoria</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            
+              <div class="box-body">
+                 <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="telefono">Descripción del Documento</label>
+                                <input type="text" class="form-control" id="descripcion_documento_convocatoria" name="descripcion_documento_convocatoria" placeholder="Descripcion  del Documento" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="telefono">Para</label>
+                                <input type="text" class="form-control" id="para_convocatoria" name="para_convocatoria" placeholder="Para" required>
+                            </div>
+                        </div>
+                  <div class="col-sm-12">
+                        <label>Cuerpo del Documento</label>
+                        <input type="hidden" class="form-control" id="cuerpo_convocatoria" name="cuerpo_convocatoria" placeholder="Para" required>
+                    <textarea class="form-control" rows="6" cols="10" placeholder="Cuerpo del Documento ..." name="editor_convocatoria" id="editor_convocatoria"></textarea>
+                    </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Cancelar</button>
+                <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento_convocatoria">Generar</button>
+             
+              </div>
+              
+          
+          </div>
+
+
+
 
 <div class="box box-primary" style="display:none;" id="estructurado">
             <div class="box-header with-border">
@@ -229,6 +268,7 @@
 <script src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
    CKEDITOR.replace( 'editor' );
+   CKEDITOR.replace( 'editor_convocatoria' );
 </script>
 <script src="{{ asset('js/Documento.js') }}"></script>
 <script src="{{ asset('js/dropdown.js') }}"></script>

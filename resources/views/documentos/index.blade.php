@@ -14,6 +14,7 @@
         <li><a href="#"><i class="fa"></i> Modulo</a></li>
         <li class="active">Gestión de Documentos</li>
       </ol>
+       
     </section>
 @if( Auth::user()->id_perfil==4 || Auth::user()->id_perfil==1 || Auth::user()->id_perfil==7 || Auth::user()->id_perfil==2 || Auth::user()->id_perfil==3 || Auth::user()->id_perfil==6)
  <section class="content">
@@ -38,7 +39,7 @@
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
-                    
+                   
                  @if(count($data)>0)  
                <tr>
                   <th>Id</th>
