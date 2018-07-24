@@ -197,6 +197,20 @@
             <i class="fa fa-files-o"></i> <span>Gestión de Documentos</span>
           </a>
         </li> 
+
+         <li>
+          <a href="{{ route('Documentos_recibidos') }}">
+            <i class="fa fa-inbox"></i> <span>Recibidos</span>
+          </a>
+        </li>  
+
+         <li>
+          <a href="{{ route('Documentos') }}">
+            <i class="fa fa-send-o"></i> <span>Enviados</span>
+          </a>
+        </li> 
+
+        
          @endif 
          @if(Auth::user()->id_perfil==7 || Auth::user()->id_perfil==5)
      

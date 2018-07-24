@@ -65,9 +65,13 @@
           <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa fa-files-o"></i></span>
 
+
+
             <div class="info-box-content">
-              <span class="info-box-text">Aprobados</span>
+             <a href="{{ route('Documentos') }}"> <span class="info-box-text">Aprobados</span>
+               <input type="text" id="url_base" value=7> 
               <span class="info-box-number">{{$Aprobado}}</span>
+              </a>
             </div>
             <!-- /.info-box-content -->
           </div>

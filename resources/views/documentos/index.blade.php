@@ -350,9 +350,14 @@
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
                         
-                         @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                    @endif<td>
+                         @if($item->id_subcategoria==1)                        
+                         <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                       
+                          <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                @endif
                           <td><span class="label label-success">{{$item->estados}}</span></td>
+                          <td>
+                          
                           {{$item->created_at}}</td>
+
                         <td>
                         <!--<a class="btn btn-info" href="{{  route('vistaHTMLPDFFirmado',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>-->
                         @if($item->id_subcategoria==1) 
@@ -373,9 +378,13 @@
                         <td>{{$item->codigo_plantilla}}</td>
                         <td>{{$item->descripcion_documento}}</td>
                         
-                         @if($item->id_subcategoria==1)                        <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else                        <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>                   
-                          @endif<td>
-                            <td><span class="label label-success">{{$item->estados}}</span></td>
+                         @if($item->id_subcategoria==1)
+                               <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>                    @else       
+                              <td><span class="label label-success">{{$item->nombre_subcategoria}}</span></td>
+                          @endif
+                          <td> <span class="label label-success">{{$item->estados}}</span> </td>
+                          <td>
+                            
                             {{$item->created_at}}</td>
                         <td>
                         <!--<a class="btn btn-info" href="{{  route('vistaHTMLPDFFirmado',['id_documento'=>$item->id_documento,'descargar'=>'pdf'])}}"><i class="fa fa-fw fa-eye"></i></a>-->

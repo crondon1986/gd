@@ -39,6 +39,8 @@ Route::put('usuarios/modificarUsuario/{id}','UserController@EditarUsuario' );
 
 Route::get('documentos/',['as'=>'Documentos','uses'=>'DocumentoController@index']);
 Route::get('documentos/enviados',['as'=>'DocumentosEnviados','uses'=>'DocumentoController@enviados']);
+Route::get('documentos/recibidos',['as'=>'Documentos_recibidos','uses'=>'DocumentoController@recibidos']);
+
 
 Route::get('documentos/create',['as'=>'CrearDocumento','uses'=>'DocumentoController@create']);
 Route::post('documentos/agregarDocumento','DocumentoController@AgregarDocumento' );
