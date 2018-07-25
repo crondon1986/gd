@@ -38,8 +38,8 @@
         ]); ?>
     </script>
 </head>
-<body class="hold-transition login-page">
-    <div id="app">
+<body class="hold-transition login-page fondo">
+    <div id="app" class="">
 <!--        <nav class="navbar navbar-default navbar-static-top">-->
             <div class="container">
                 <div class="navbar-header">

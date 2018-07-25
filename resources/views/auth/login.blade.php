@@ -4,7 +4,7 @@
 <style type="text/css">
   .fondo{
     background-color: #000000 !important;
-    background-image: url('{{asset('/image/banner7.jpg')}}');
+    background-image: url(image/disenio6.jpg);
   }
   .login-box{
     width: 480px;
