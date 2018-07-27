@@ -26,20 +26,13 @@ Auth::routes();
 //Route::get('', 'HomeController@index');
 Route::get('inicio/',['as'=>'Home','uses'=>'HomeController@index']);
 Route::get('/home', 'HomeController@index');
-Route::get('usuarios/',['as'=>'Usuarios','uses'=>'UserController@index']);
-Route::get('usuarios/create',['as'=>'CrearUsuarios','uses'=>'UserController@create']);
-Route::post('usuarios/agregarUsuario', 'UserController@AgregarUsuario' );
-Route::get('usuarios/municipio/{id}','UserController@GetMunicipios');
-Route::get('usuarios/{id}','UserController@GetStates');
-Route::get('usuarios/ciudad/{id}','UserController@GetCiudades');  
-Route::get('usuarios/show/{id}',['as'=>'UsuariosShow','uses'=>'UserController@show']);
-Route::get('usuarios/eliminar/{id}','UserController@Destroy');
-Route::get('usuarios/modificar/{id}',['as'=>'ModificarUsuario','uses'=>'UserController@ModificarUsuario']);
-Route::put('usuarios/modificarUsuario/{id}','UserController@EditarUsuario' );
+
 
 Route::get('documentos/',['as'=>'Documentos','uses'=>'DocumentoController@index']);
 Route::get('documentos/enviados',['as'=>'DocumentosEnviados','uses'=>'DocumentoController@enviados']);
 Route::get('documentos/recibidos',['as'=>'Documentos_recibidos','uses'=>'DocumentoController@recibidos']);
+Route::get('documentos/remitidos',['as'=>'Documentos_remitidos','uses'=>'DocumentoController@Remitidos']);
+Route::get('documentos/creados',['as'=>'Documentos_creados','uses'=>'DocumentoController@Creados']);
 
 
 Route::get('documentos/create',['as'=>'CrearDocumento','uses'=>'DocumentoController@create']);
@@ -152,3 +145,19 @@ Route::group(['prefix' => 'profile'],function(){
 /*enviar circular*/
 
 Route::post('circular/enviarcircular',['as'=>'enviarcircular','uses'=>'DocumentoController@EnviarDocumentocircular']);
+
+
+
+/*RUTAS DEL USUARIO ADMIN*/
+Route::get('usuarios/',['as'=>'Usuarios','uses'=>'UserController@index']);
+Route::get('usuarios/create',['as'=>'CrearUsuarios','uses'=>'UserController@create']);
+Route::post('usuarios/agregarUsuario', 'UserController@AgregarUsuario' );
+Route::get('usuarios/municipio/{id}','UserController@GetMunicipios');
+Route::get('usuarios/{id}','UserController@GetStates');
+Route::get('usuarios/ciudad/{id}','UserController@GetCiudades');  
+Route::get('usuarios/show/{id}',['as'=>'UsuariosShow','uses'=>'UserController@show']);
+Route::get('usuarios/eliminar/{id}','UserController@Destroy');
+Route::get('usuarios/modificar/{id}',['as'=>'ModificarUsuario','uses'=>'UserController@ModificarUsuario']);
+Route::put('usuarios/modificarUsuario/{id}','UserController@EditarUsuario' );
+/*************************/
+

@@ -689,7 +689,7 @@
 
             <div class="modal-footer">
                 <div class="box-footer col-xs-12 ">
-                    <button  type="button"  class="btn btn-danger" aling="center" id="cerrar_circular" onclick="javascript:cerrar_modal({{$item->id_documento}})"> <a href="{{ url('documentos/visto/'.$item->id_documento) }}">Cerrar</a></button>
+                    <button  type="button"  class="btn btn-danger" aling="center" id="cerrar_circular" onclick="javascript:cerrar_modal({{$item->id_documento}})"> Cerrar666</button>
                 </div>
             </div>
         </div>

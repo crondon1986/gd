@@ -41,18 +41,23 @@ class DocumentoController extends Controller
         $id_depedencia= Auth::user()->id_dependencia;
         $id_usuario= Auth::user()->id;
         $id_estados=2; // remitido por la secretaria
+        $id_perfil=Auth::user()->id_perfil;
        // $User=User::where('id',Auth::user()->id)->get();
         //if( Auth::user()->id_dependencia==2 || Auth::user()->id_dependencia==20 || Auth::user()->id_dependencia==14){
             $data= Documento::select('documento.*','subcategoria_documento.nombre_subcategoria','estados.nombre as estados')
                 ->join('estados','documento.id_estados','=','estados.id_estados')
                 ->join('subcategoria_documento','documento.id_subcategoria','=','subcategoria_documento.id_subcategoria')->
-                join('ruta','documento.id_documento','=','ruta.id_documento')->
+                join('ruta','documento.id_documento','=','ruta.id_documento')
+                ->
                 where('documento.id_dependencia_c',$id_depedencia)
                 ->
                  where('ruta.id_dependencia',$id_depedencia)
                 ->
                 where('ruta.id_estado',$id_estados)
-
+                ->
+                 where('ruta.id_estado',$id_estados)
+                ->where('documento.id_estados',$id_estados)
+        
                 ->paginate(10);
 
 
@@ -72,6 +77,96 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
 
 
     }
+
+
+    public function Creados(){
+
+        $data= array( );
+        $datad= array( );
+        $id_depedencia= Auth::user()->id_dependencia;
+        $id_usuario= Auth::user()->id;
+        $id_estados=1; // remitido por la secretaria
+        $id_perfil=Auth::user()->id_perfil;
+       // $User=User::where('id',Auth::user()->id)->get();
+        //if( Auth::user()->id_dependencia==2 || Auth::user()->id_dependencia==20 || Auth::user()->id_dependencia==14){
+            $data= Documento::select('documento.*','subcategoria_documento.nombre_subcategoria','estados.nombre as estados')
+                ->join('estados','documento.id_estados','=','estados.id_estados')
+                ->join('subcategoria_documento','documento.id_subcategoria','=','subcategoria_documento.id_subcategoria')->
+                //join('ruta','documento.id_documento','=','ruta.id_documento')
+               // ->
+                where('documento.id_dependencia_c',$id_depedencia)
+               // ->
+                // where('ruta.id_dependencia',$id_depedencia)
+                //->
+               // where('ruta.id_estado',$id_estados)
+               // ->
+               //  where('ruta.id_estado',$id_estados)
+                ->where('documento.id_estados',$id_estados)
+                ->where('documento.id_usuario',Auth::user()->id_usuario)
+                ->paginate(10);
+
+
+                /*SELECT documento.*, ruta.* FROM `documento`
+join ruta on documento.id_documento=ruta.id_documento
+WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 and ruta.id_estado=3 */
+
+             
+        
+        $periodos=Periodos::where('nombre','I-2018')->get();
+        $id_periodo=$periodos[0]['attributes']['id_periodo'];
+        $Dependencia= Dependencia::pluck('nombre_dependencia','id_dependencia');
+       // $Rol=Perfil::pluck('nombre_perfil','id_perfil');
+       // return View::make('usuarios/create')->with(['Ciudad' => $Ciudades,'Pais' => $Pais,'States' => $States,'Municipios'=>$Municipios,'Dependencia'=>$Dependencia,'Rol'=>$Rol]); 
+        if(count($data)>0)
+        return view('documentos/index_')->with(['data'=>$data,'id_periodo'=>$id_periodo
+            ,'Dependencia'=>$Dependencia,'destinos'=>$datad]);
+    
+    }
+
+    public function Remitidos(){
+      $data= array( );
+        $datad= array( );
+        $id_depedencia= Auth::user()->id_dependencia;
+        $id_usuario= Auth::user()->id;
+        $id_estados=2; // remitido por la secretaria
+        $id_perfil=Auth::user()->id_perfil;
+       // $User=User::where('id',Auth::user()->id)->get();
+        //if( Auth::user()->id_dependencia==2 || Auth::user()->id_dependencia==20 || Auth::user()->id_dependencia==14){
+            $data= Documento::select('documento.*','subcategoria_documento.nombre_subcategoria','estados.nombre as estados')
+                ->join('estados','documento.id_estados','=','estados.id_estados')
+                ->join('subcategoria_documento','documento.id_subcategoria','=','subcategoria_documento.id_subcategoria')->
+                //join('ruta','documento.id_documento','=','ruta.id_documento')
+               // ->
+                where('documento.id_dependencia_c',$id_depedencia)
+               // ->
+                // where('ruta.id_dependencia',$id_depedencia)
+                //->
+               // where('ruta.id_estado',$id_estados)
+               // ->
+               //  where('ruta.id_estado',$id_estados)
+                ->where('documento.id_estados',$id_estados)
+        
+                ->paginate(10);
+
+
+                /*SELECT documento.*, ruta.* FROM `documento`
+join ruta on documento.id_documento=ruta.id_documento
+WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 and ruta.id_estado=3 */
+
+             
+        
+        $periodos=Periodos::where('nombre','I-2018')->get();
+        $id_periodo=$periodos[0]['attributes']['id_periodo'];
+        $Dependencia= Dependencia::pluck('nombre_dependencia','id_dependencia');
+       // $Rol=Perfil::pluck('nombre_perfil','id_perfil');
+       // return View::make('usuarios/create')->with(['Ciudad' => $Ciudades,'Pais' => $Pais,'States' => $States,'Municipios'=>$Municipios,'Dependencia'=>$Dependencia,'Rol'=>$Rol]); 
+        return view('documentos/index_')->with(['data'=>$data,'id_periodo'=>$id_periodo
+            ,'Dependencia'=>$Dependencia,'destinos'=>$datad]);
+
+
+    }
+
+
 
 
 

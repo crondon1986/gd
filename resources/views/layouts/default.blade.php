@@ -160,7 +160,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel">
+    <!--  <div class="user-panel">
         <div class="pull-left image">
           <img src="{{ url('file/foto/'.Auth::user()->avatar) }}" class="img-circle" alt="User Image">
         </div>
@@ -169,10 +169,10 @@
        
           <a href="{{ url('/') }}"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
-      </div>
+      </div>-->
       <ul class="sidebar-menu" data-widget="tree">
 
-       @if(Auth::user()->id_perfil===2 ||  Auth::user()->id_perfil==3 )
+       @if(Auth::user()->id_perfil===200000000 ||  Auth::user()->id_perfil==300000 )
         <!--usuario secretaria -->
         <li>
           <a href="{{route('Home')}}">
@@ -181,7 +181,7 @@
         </li>
        @endif 
        
-        @if(Auth::user()->id_perfil===1)
+        @if(Auth::user()->id_perfil===10000000000)
         <li>
           <a href="{{route('Usuarios')}}">
             <i class="fa fa-user"></i> <span>Gestión de Usuarios</span>
@@ -190,7 +190,7 @@
        @endif 
 
          @if(Auth::user()->id_dependencia==2 || Auth::user()->id_dependencia==14 || Auth::user()->id_dependencia==20)
-       @if(Auth::user()->id_perfil==2 || Auth::user()->id_perfil==10||  Auth::user()->id_perfil==3 ||  Auth::user()->id_perfil==4 ||  Auth::user()->id_perfil==6 ||  Auth::user()->id_perfil==7)
+       @if(Auth::user()->id_perfil==2000000000|| Auth::user()->id_perfil==10||  Auth::user()->id_perfil==3000000 ||  Auth::user()->id_perfil==4 ||  Auth::user()->id_perfil==6 ||  Auth::user()->id_perfil==7)
      
        <li>
           <a href="{{ route('Documentos') }}">
@@ -220,14 +220,14 @@
           </a>
         </li> 
         @endif 
-       @if(Auth::user()->id_perfil==2 || Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==3)
+       @if(Auth::user()->id_perfil==200000000|| Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==30000000)
        <li>
           <a href="{{url('ubicacion/index')}}">
             <i class="fa fa-map-marker"></i> <span>Ubicación del Documento</span>
           </a>
         </li> 
         @endif
-       @if(Auth::user()->id_perfil==2 || Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==30 || Auth::user()->id_perfil==5 ||  Auth::user()->id_perfil==6 ||  Auth::user()->id_perfil==7)
+       @if(Auth::user()->id_perfil==2000000000 || Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==30 || Auth::user()->id_perfil==5 ||  Auth::user()->id_perfil==6 ||  Auth::user()->id_perfil==7)
      
        <li>
           <a href="{{ route('Preparaduria') }}">
@@ -235,7 +235,7 @@
           </a>
         </li> 
          @endif 
-          @if(Auth::user()->id_perfil==2 || Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==30 || Auth::user()->id_perfil==5 )
+          @if(Auth::user()->id_perfil==200000000|| Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==30 || Auth::user()->id_perfil==5 )
      
        <li>
           <a href="{{url('ubicacionpreparaduria/index')}}">
@@ -275,6 +275,120 @@
             <li><a href="{{ route('Documentos') }}"><i class="fa fa-circle-o"></i>Por Enviar</a></li>
           </ul>
         </li>-->
+
+
+          <!--Nuevo menu de Administrador Perfil-->
+  @if(Auth::user()->id_perfil===1)
+  <li>
+    <a href="{{route('Usuarios')}}">
+            <i class="fa fa-user"></i> <span>Gestión de Usuarios</span>
+          </a>
+  </li> 
+  <li>
+    <a href="">
+            <i class="fa fa-"></i> <span>Gestión de Formatos</span>
+    </a>
+  </li>
+  <li>
+    <a href="">
+            <i class="fa fa-"></i> <span>Gestión de Calendarios</span>
+    </a>
+  </li> 
+  @endif 
+
+     <!-- fin Nuevo menu de Administrador Perfil-->
+  <!--Nuevo menu de Secretaria de Departamentos Perfil-->
+ @if(Auth::user()->id_perfil==3)
+      <li>
+          <a href="{{route('Home')}}">
+            <i class="fa fa-home"></i> <span>Inicio</span>
+          </a>
+      </li>
+      <li>
+          <a href="{{ route('Documentos') }}">
+            <i class="fa fa-files-o"></i> <span>Gestión de Documentos</span>
+          </a>
+      </li> 
+      <li>
+          <a href="{{route('CrearDocumento')}}" >
+            <i class="fa fa-home"></i> <span>Crear</span>
+          </a>
+      </li>
+     
+
+      <li>
+          <a href="{{ route('Documentos_recibidos') }}">
+            <i class="fa fa-inbox"></i> <span>Recibidos</span>
+          </a>
+      </li>  
+        <li>
+          <a href="{{ route('Documentos_recibidos') }}">
+            <i class="fa fa-send-o"></i> <span>Enviados</span>
+          </a>
+        </li>
+
+         <li>
+          <a href="{{ route('Documentos_remitidos') }}">
+            <i class="fa fa-send-o"></i> <span>Remitidos por Firmar</span>
+          </a>
+        </li> 
+         <li>
+          <a href="{{ route('Documentos_creados') }}">
+            <i class="fa fa-send-o"></i> <span>Borradores</span>
+          </a>
+        </li>
+
+
+  @endif 
+
+  <!-- finNuevo menu de Secretaria de Departamentos-->
+
+   <!-- Nuevo menu de JEFE de Departamentos -->
+    @if(Auth::user()->id_perfil==2)
+     
+      <li>
+          <a href="{{route('Home')}}">
+            <i class="fa fa-home"></i> <span>Inicio</span>
+          </a>
+      </li>
+      <li>
+          <a href="{{ route('Documentos') }}">
+            <i class="fa fa-files-o"></i> <span>Gestión de Documentos</span>
+          </a>
+      </li> 
+      <li>
+          <a href="{{route('CrearDocumento')}}" >
+            <i class="fa fa-home"></i> <span>Crear</span>
+          </a>
+      </li>
+     
+
+      <li>
+          <a href="{{ route('Documentos_recibidos') }}">
+            <i class="fa fa-inbox"></i> <span>Recibidos</span>
+          </a>
+      </li>  
+        <li>
+          <a href="{{ route('Documentos_recibidos') }}">
+            <i class="fa fa-send-o"></i> <span>Enviados</span>
+          </a>
+        </li>
+
+         <li>
+          <a href="{{ route('Documentos_remitidos') }}">
+            <i class="fa fa-send-o"></i> <span>Remitidos por Firmar</span>
+          </a>
+        </li> 
+         <li>
+          <a href="{{ route('Documentos_creados') }}">
+            <i class="fa fa-send-o"></i> <span>Borradores</span>
+          </a>
+        </li>
+
+    @endif 
+    <!-- fin Nuevo menu de JEFE de Departamentos-->
+
+
 
 
          

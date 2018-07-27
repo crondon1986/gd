@@ -287,7 +287,7 @@ function PdfModalCirular(id_documento){
 }
 
 function PdfModalCirular_visto(id_documento){
-  //alert(id_documento);
+  alert(id_documento);
   var pdf='pdf';
   var varurl=$('#url_base').val()+'/vista-html-pdf?id_documento='+id_documento+'&descargar='+pdf;
  $("#documento1")[0].contentWindow.location.reload(true);
@@ -403,7 +403,7 @@ $('#Enviar_circular').click(function(){
 
 
  function cerrar_modal (id_documento){
-  //alert(id_documento);
+alert(id_documento);
   var pdf='pdf';
 
   var varurl='documentos/visto/'+id_documento; 

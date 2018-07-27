@@ -19,7 +19,8 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form">
-                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+               
+                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
               <div class="box-body">
                  <div class="col-sm-4">
                             <div class="form-group">
@@ -78,9 +79,13 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Cancelar</button>
-                <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento">Generar</button>
-             
+                <div class="col-sm-12">
+                  
+                  <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento">Generar</button>
+
+                  <button  class="btn btn-success pull-right" type="submit" id="CrearDocumento">Generar y Remitir</button>
+                  <button type="submit" class="btn btn-primary">Cancelar</button>
+                </div>
               </div>
               
           

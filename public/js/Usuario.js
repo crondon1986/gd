@@ -108,3 +108,12 @@ $("#ModificarUsuario").click(function ()
             }
       });
  });
+
+$("#id_buscar_usuario").click(function () 
+{
+  //levantar modal myModal_Buscar
+  //alert(this.id);
+  $('#myModal_Buscar').modal('show');
+
+       
+ });
