@@ -6,7 +6,7 @@
         <smallCrear</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Modulo</a></li>
+       <!-- <li><a href="#"><i class="fa"></i> Modulo</a></li>-->
         <li><a href="#">Gestión de Usuarios</a></li>
         <li class="active">Crear Usuario</li>
       </ol>
@@ -46,6 +46,16 @@
                         </div >
                         <div class="col-sm-4">
                             <div class="form-group">
+                                <label for="sexo">Sexo</label>
+                                <select class="form-control" name="sexo" id="sexo"> 
+                                    <option>Seleccione el Sexo </option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                </select>
+                            </div>
+                        </div >
+                        <div class="col-sm-4">
+                            <div class="form-group">
                                 <label for="telefono">Teléfono</label>
                                 <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono" required>
                             </div>
@@ -56,26 +66,23 @@
                                 <input type="email" class="form-control" id="email" name="email" placeholder="email" required>
                             </div>
                         </div >
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="sexo">Sexo</label>
-                                <select class="form-control" name="sexo" id="sexo"> 
-                                    <option>Seleccione el Sexo </option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Femenino">Femenino</option>
-                                </select>
-                            </div>
-                        </div >
+                        
                         
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="ocupacion">Ocupación</label>
+                                <label for="ocupacion">Nivel Académico</label>
                                 <input type="text" class="form-control" id="ocupacion" name="ocupacion" placeholder="ocupacion" required>
                             </div>
                         </div >
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="sexo">Departamento</label>
+                                <label for="ocupacion">Cargo que Ocupa</label>
+                                <select type="text" class="form-control" id="ocupacion_cargo" name="ocupacion_cargo" placeholder="ocupacion" ></select>
+                            </div>
+                        </div >
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="sexo">Dependncia</label>
                                  {!! Form::select('id_dependencia', $Dependencia, null, ['id' => 'id_dependencia','class'=>'form-control','placeholder'=>'Seleccione Departamento ..','required']) !!}
                                     {!! $errors->first('id_dependencia', '<p class="help-block">:message</p>') !!}
                             </div>
@@ -85,7 +92,6 @@
                                 <label for="sexo">Rol</label>
                                     {!! Form::select('id_perfil', $Rol, null, ['id' => 'id_perfil','class'=>'form-control','placeholder'=>'Seleccione Rol ..','required']) !!}
                                     {!! $errors->first('id_perfil', '<p class="help-block">:message</p>') !!}
-                           
                             </div>
                         </div >
                         <div class="col-sm-6">
@@ -107,7 +113,7 @@
     <section class="content">
 <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Direccion</h3>
+              <h3 class="box-title">Dirección Habitacional</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -141,6 +147,12 @@
                                     {!! $errors->first('id_ciudad', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Parroquias</label>
+                                <select type="text" class="form-control" id="id_parroquia" name="id_parroquia" placeholder="ocupacion" ></select>
+                            </div>
+                        </div>
                      <div class="col-sm-12">
                         <label>Dirección</label>
                     <textarea class="form-control" rows="3" placeholder="Direccion ..." name="direccion" id="direccion"></textarea>
@@ -148,9 +160,13 @@
                 </div>
                 
              </div><div class="box-footer">
-           <div class="col-lg-offset-2 col-lg-10">
-                            <button class="btn btn-primary pull-right" type="submit" id="CrearUsuario">Agregar</button>
-                        </div>    </div>
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-primary pull-right" type="submit" id="CrearUsuario">Crear</button>
+                            <button class="btn btn-primary pull-right" type="submit" id="limpiar_formulario_usuario">Limpiar</button>
+                             <button class="btn btn-primary pull-right" type="submit" id="limpiar_formulario_usuario">Cancelar</button>
+                        </div> 
+                    </div>    
+                    </div>
                     </div>
                     </div> 
             

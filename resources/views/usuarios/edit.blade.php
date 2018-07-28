@@ -80,13 +80,19 @@
                         
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="ocupacion">Ocupación</label>
+                                <label for="ocupacion">Nivel Académico</label>
                                 <input type="text" class="form-control" id="ocupacion" name="ocupacion" placeholder="ocupacion" value="{{$User->ocupacion}}" required>
                             </div>
                         </div >
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="sexo">Departamento</label>
+                                <label for="ocupacion">Cargo que Ocupa</label>
+                                <select type="text" class="form-control" id="ocupacion_cargo" name="ocupacion_cargo" placeholder="ocupacion" ></select>
+                            </div>
+                        </div >
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="sexo">Dependencia</label>
                                  {!! Form::select('id_dependencia', $Dependencia, null, ['id' => 'id_dependencia','class'=>'form-control','placeholder'=>'Seleccione Departamento ..','required']) !!}
                                     {!! $errors->first('id_dependencia', '<p class="help-block">:message</p>') !!}
                             </div>
@@ -99,6 +105,16 @@
                            
                             </div>
                         </div >
+                        <div class="col-sm-6">
+                        <div class="form-group {{ $errors->has('imgUser') ? ' has-error' : '' }}">
+                            <label for="nombre">Foto</label>
+                            <input type="hidden" name="imgUser" id="file-imgUser" required>
+                            {!! $errors->first('imgUser', '<p class="help-block">:message</p>') !!}
+                            <div id="imgUser"></div>
+                        </div>
+                    </div>
+
+
                       
                     </div> 
               </div>
@@ -146,6 +162,12 @@
                                     {!! $errors->first('id_ciudad', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Parroquias</label>
+                                <select type="text" class="form-control" id="id_parroquia" name="id_parroquia" placeholder="ocupacion" ></select>
+                            </div>
+                        </div>
                      <div class="col-sm-12">
                         <label>Direccion</label>
                     <textarea class="form-control" rows="3" placeholder="Direccion ..." name="direccion" id="direccion">{{$User->direccion}}</textarea>
@@ -154,7 +176,8 @@
                 
              </div><div class="box-footer">
            <div class="col-lg-offset-2 col-lg-10">
-                            <button class="btn btn-primary pull-right" type="submit" id="ModificarUsuario">Modificar</button>
+                            <button class="btn btn-primary pull-right" type="submit" id="ModificarUsuario">Editar</button>
+                            <button class="btn btn-primary pull-right" type="submit" id="ModificarUsuario">Cancelar</button>
                         </div>    </div>
                     </div>
                     </div> 

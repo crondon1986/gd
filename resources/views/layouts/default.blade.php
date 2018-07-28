@@ -50,12 +50,23 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="index2.html" class="logo" style="font-size: 15px">
     
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>U</b>DO</span>
+     <!-- <span class="logo-mini"><b>U</b>DO</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Documentos</b></span>
+      <!--<span class="logo-lg"><b>Documentos</b></span>-->
+        @if( Auth::user()->id_perfil==1   )
+            <span class="logo-lg">Sesión:<b>Administrador</b></span>
+        @endif
+        @if( Auth::user()->id_perfil==3   )
+                       
+          <span class="logo-lg">Sesión:<b>Secretaría</b></span>
+        @endif 
+        @if( Auth::user()->id_perfil==2  )
+         <span class="logo-lg">Sesión:<b> Jefe de Departamento</b></span>  
+         @endif 
+
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -137,7 +148,7 @@
                      <a href="{{ url('/logout')  }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">
-                                         Cerrar Sesion
+                                        Salir
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -329,7 +340,7 @@
 
          <li>
           <a href="{{ route('Documentos_remitidos') }}">
-            <i class="fa fa-send-o"></i> <span>Remitidos por Firmar</span>
+            <i class="fa fa-send-o"></i> <span>Borradores por Firmar</span>
           </a>
         </li> 
          <li>
@@ -337,8 +348,11 @@
             <i class="fa fa-send-o"></i> <span>Borradores</span>
           </a>
         </li>
-
-
+        <li>
+          <a href="{{ route('Documentos_creados') }}">
+            <i class="fa fa-send-o"></i> <span>Notificaciones</span>
+          </a>
+        </li>
   @endif 
 
   <!-- finNuevo menu de Secretaria de Departamentos-->
@@ -387,15 +401,7 @@
 
     @endif 
     <!-- fin Nuevo menu de JEFE de Departamentos-->
-
-
-
-
-         
-
-
-
-            <li id="sessionKiller2"><a  onclick="event.preventDefault();
+      <li id="sessionKiller2"><a  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" href="javascript:void(0);"><i class="fa fa-sign-out"></i> <span>Salir</span></a></li>
 
       </ul>

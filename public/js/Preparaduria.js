@@ -287,13 +287,33 @@ function PdfModalCirular(id_documento){
 }
 
 function PdfModalCirular_visto(id_documento){
-  alert(id_documento);
+  alert(id_documento+'prueba111');
   var pdf='pdf';
   var varurl=$('#url_base').val()+'/vista-html-pdf?id_documento='+id_documento+'&descargar='+pdf;
- $("#documento1")[0].contentWindow.location.reload(true);
- $("#documento1").attr('src',varurl);
-  $('#myModal_circular [class= "modal-title"]').empty().append('Circular');
-  $('#myModal_circular').modal("show");
+//$("#documento1")[0].contentWindow.location.reload(true);
+//$("#documento1").attr('src',varurl);
+$("#url_pdf_circular").attr('src',varurl);
+
+$('#myModal_circular [class= "modal-title"]').empty().append('Circular');
+$('#myModal_circular').modal("hide");
+$('#myModal_circular').modal("show");
+//myModal_circular
+  //eventos adicionales 
+
+$("#elementocontrolado").off()
+  $('#modalid_visto_circular').click(function(){
+   //alert(this.id)
+    //alert(id_documento)
+//alert(id_documento);
+  var pdf='pdf';
+
+  var varurl=$('#url_base').val()+'/documentos/visto/'+id_documento; 
+   location.href =varurl;
+
+  });
+  $('#modalEnviar_circular').click(function(){
+     alert(this.id)
+  });
 }
 
 function PdfModalCirularfirma(id_documento){

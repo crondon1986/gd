@@ -668,7 +668,7 @@
 <!--Modal circular-->
 <!--<a  title=" Ver " class="btn btn-info" ><i class="fa fa-fw fa-eye"></i></a>-->
 
-<div aria-hidden="true"  tabindex="-1" aria-labelledby="myModalLabel" id="myModal_circular" class="modal fade" role="dialog">
+<div aria-hidden="true"  tabindex="-1" aria-labelledby="myModalLabel" id="myModal_circular777" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header box-primary">

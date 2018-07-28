@@ -7,12 +7,17 @@
 </style>
 <section class="content-header">
       <h1>
-        Sistema De Gestión De Documentos
+       
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa"></i> Modulo</a></li>
-        <li class="active">Remitidos por firmar</li>
+        
+        <li class="active">
+
+@if($codigo_menu)
+      {{$codigo_menu}} 
+@endif
+        </li>
       </ol>
        
     </section>
@@ -22,9 +27,11 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Listado de Por firmar</h3>
+              <h3 class="box-title">
+                Documentos
+              </h3>
              
-   <a href="{{route('CrearDocumento')}}" class="btn btn-sm btn-info btn-flat pull-right">Crear Documento</a>
+  <!-- <a href="{{route('CrearDocumento')}}" class="btn btn-sm btn-info btn-flat pull-right">Crear Documento</a>-->
           
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -38,17 +45,27 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
+          <table class="table table-hover">
+            <!--<table id="example1" class="table table-bordered table-striped">-->
                    
   @if(count($data)>0)  
                <tr>
                   <th>Id</th>
                   <th>Código</th>
-                  <th>Descripcion</th>
+                  <th>Descripción</th>
                  
                   <th>Documento</th>
                    <th>Estatus</th>
-                  <th>Fecha Creado</th>
+
+                  <th>
+                @if($codigo_menu)
+                  Fecha
+                @else
+                   Fecha Creado
+                @endif
+
+
+                  </th>
                   <th>Acción</th>
                 </tr>
       @foreach($data as $item)  
@@ -80,13 +97,22 @@
          @endif
         
         @if(Auth::user()->id_perfil==2)
-        <!--CIRCULARES acciones cuando el estado es remitido usuario Jefe de departamento vizualiz --> 
+        <!--CIRCULARES acciones cuando el estado es remitido y vistos usuario Jefe de departamento vizualiz --> 
 
 
             @if($item->id_subcategoria==1  && $item->id_estados==2) 
-             <a class="btn btn-info" onclick="javascript:PdfModalCirular_visto({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title="Ver"></i></a>
+             <a title="Ver" class="btn btn-info" onclick="javascript:PdfModalCirular_visto({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" ></i></a>
 
              @endif
+              @if($item->id_subcategoria==1  && $item->id_estados==3 || $item->id_estados==4) 
+             <a title="Ver Circular" class="btn btn-info" onclick="javascript:PdfModalCirular({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" ></i></a>
+                            <a class="btn btn-danger" href="{{ url('documentos/porcorrecion/'.$item->id_documento)}}"><i class="fa fa-fw fa-close"></i></a>
+                             <a class="btn btn-warning" href="{{ route('CorregirDocumento',['id_documento'=>$item->id_documento]) }}"><i class="fa fa-pencil"></i></a>
+                           <!-- <a class="btn btn-success" href="{{ url('documentos/porfirmar/'.$item->id_documento) }}"><i class="fa fa-fw fa-check"></i></a>-->
+                           <a class="btn btn-success" href="{{ url('documentos/firmado/'.$item->id_documento) }}"><i class="fa fa-fw  fa-check-square-o"></i></a>
+
+             @endif
+
 
           @endif
 
@@ -98,7 +124,7 @@
                 <tr>
                   <th>Id</th>
                   <th>Código</th>
-                  <th>Descripcion</th>
+                  <th>Descripción</th>
                   <th>Estatus</th>
                   <th>Documento</th>
                    <th>Por</th>
@@ -144,12 +170,13 @@
         <div class="modal-content">
             <div class="modal-header box-primary">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Solicitud de Preparaduría</h4>
+                <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body" >
               
                 <div class="form-group col-xs-12" >
-                    <iframe id="documento1" src="" width="860" height="600" ></iframe>
+                   <!-- <iframe id="documento1" src="" width="860" height="600" ></iframe>-->
+                     <embed id="url_pdf_circular" src="helloworld.swf" width="860" height="600"> 
                 </div>
             </div>
 
@@ -160,7 +187,9 @@
 
             <div class="modal-footer">
                 <div class="box-footer col-xs-12 ">
-                    <button  type="button"  class="btn btn-danger" aling="center" id="cerrar_circular" onclick="javascript:cerrar_modal({{$item->id_documento}})"> <a href="{{ url('documentos/visto/'.$item->id_documento) }}">Cerrar</a></button>
+                    <button  type="button"  class="btn btn-danger" aling="center" id="modalid_visto_circular" onclick="">Visto </a></button>
+
+                     <button style="display:none" type="button"  class="btn btn-danger" aling="center" id="modalEnviar_circular" onclick="">Enviar </a></button>
                 </div>
             </div>
         </div>

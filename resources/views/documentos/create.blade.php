@@ -2,7 +2,7 @@
 @section('contenido')
 <section class="content-header">
       <h1>
-        Sistema De Gestión De Documentos
+       
         <small></small>
       </h1>
       <ol class="breadcrumb">

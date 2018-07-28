@@ -36,6 +36,8 @@ class DocumentoController extends Controller
     
 
     public function recibidos(){
+        
+        $codigo_menu="Recibidos";
         $data= array( );
         $datad= array( );
         $id_depedencia= Auth::user()->id_dependencia;
@@ -72,8 +74,8 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
         $Dependencia= Dependencia::pluck('nombre_dependencia','id_dependencia');
        // $Rol=Perfil::pluck('nombre_perfil','id_perfil');
        // return View::make('usuarios/create')->with(['Ciudad' => $Ciudades,'Pais' => $Pais,'States' => $States,'Municipios'=>$Municipios,'Dependencia'=>$Dependencia,'Rol'=>$Rol]); 
-        return view('documentos/index')->with(['data'=>$data,'id_periodo'=>$id_periodo
-            ,'Dependencia'=>$Dependencia,'destinos'=>$datad]);
+        return view('documentos/index_')->with(['data'=>$data,'id_periodo'=>$id_periodo
+            ,'Dependencia'=>$Dependencia,'destinos'=>$datad,'codigo_menu'=> $codigo_menu]);
 
 
     }
@@ -102,7 +104,7 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
                // ->
                //  where('ruta.id_estado',$id_estados)
                 ->where('documento.id_estados',$id_estados)
-                ->where('documento.id_usuario',Auth::user()->id_usuario)
+                ->where('documento.id_usuario',Auth::user()->id)
                 ->paginate(10);
 
 
@@ -117,7 +119,7 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
         $Dependencia= Dependencia::pluck('nombre_dependencia','id_dependencia');
        // $Rol=Perfil::pluck('nombre_perfil','id_perfil');
        // return View::make('usuarios/create')->with(['Ciudad' => $Ciudades,'Pais' => $Pais,'States' => $States,'Municipios'=>$Municipios,'Dependencia'=>$Dependencia,'Rol'=>$Rol]); 
-        if(count($data)>0)
+       // if(count($data)>0)
         return view('documentos/index_')->with(['data'=>$data,'id_periodo'=>$id_periodo
             ,'Dependencia'=>$Dependencia,'destinos'=>$datad]);
     
@@ -129,6 +131,7 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
         $id_depedencia= Auth::user()->id_dependencia;
         $id_usuario= Auth::user()->id;
         $id_estados=2; // remitido por la secretaria
+        $id_estados_visto=3;
         $id_perfil=Auth::user()->id_perfil;
        // $User=User::where('id',Auth::user()->id)->get();
         //if( Auth::user()->id_dependencia==2 || Auth::user()->id_dependencia==20 || Auth::user()->id_dependencia==14){
@@ -145,7 +148,7 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
                // ->
                //  where('ruta.id_estado',$id_estados)
                 ->where('documento.id_estados',$id_estados)
-        
+                ->orwhere('documento.id_estados',$id_estados_visto)
                 ->paginate(10);
 
 

@@ -2,12 +2,12 @@
 @section('contenido')
 <section class="content-header">
       <h1>
-        Sistema De Gestión De Documentos
+        
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa"></i> Modulo</a></li>
-        <li class="active">Gestión de Usuarios</li>
+       <!-- <li><a href="#"><i class="fa"></i> Modul</a></li>-->
+        <li class="active">Gestinar Usuarios</li>
       </ol>
     </section>
  <section class="content">
@@ -16,7 +16,7 @@
             <!-- /.box-header -->
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Usuarios</h3>
+              <h2 class="box-title">Usuarios Registrados</h2>
           <div class="box-footer clearfix">
            
             <div class="box-footer col-xs-12 ">
