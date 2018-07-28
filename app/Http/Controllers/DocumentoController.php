@@ -82,7 +82,7 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
 
 
     public function Creados(){
-
+ $codigo_menu="Borradores";
         $data= array( );
         $datad= array( );
         $id_depedencia= Auth::user()->id_dependencia;
@@ -121,11 +121,12 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
        // return View::make('usuarios/create')->with(['Ciudad' => $Ciudades,'Pais' => $Pais,'States' => $States,'Municipios'=>$Municipios,'Dependencia'=>$Dependencia,'Rol'=>$Rol]); 
        // if(count($data)>0)
         return view('documentos/index_')->with(['data'=>$data,'id_periodo'=>$id_periodo
-            ,'Dependencia'=>$Dependencia,'destinos'=>$datad]);
+            ,'Dependencia'=>$Dependencia,'destinos'=>$datad,'codigo_menu'=> $codigo_menu]);
     
     }
 
     public function Remitidos(){
+         $codigo_menu="Borradores por Firmar";
       $data= array( );
         $datad= array( );
         $id_depedencia= Auth::user()->id_dependencia;
@@ -164,7 +165,7 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
        // $Rol=Perfil::pluck('nombre_perfil','id_perfil');
        // return View::make('usuarios/create')->with(['Ciudad' => $Ciudades,'Pais' => $Pais,'States' => $States,'Municipios'=>$Municipios,'Dependencia'=>$Dependencia,'Rol'=>$Rol]); 
         return view('documentos/index_')->with(['data'=>$data,'id_periodo'=>$id_periodo
-            ,'Dependencia'=>$Dependencia,'destinos'=>$datad]);
+            ,'Dependencia'=>$Dependencia,'destinos'=>$datad,'codigo_menu'=> $codigo_menu]);
 
 
     }
