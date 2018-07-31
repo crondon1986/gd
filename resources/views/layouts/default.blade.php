@@ -340,7 +340,7 @@
 
          <li>
           <a href="{{ route('Documentos_remitidos') }}">
-            <i class="fa fa-pencil"></i> <span>Borradores por Firmar</span>
+            <i class="fa fa-pencil"></i> <span>Por Enviar</span>
           </a>
         </li> 
          <li>
@@ -390,7 +390,7 @@
 
          <li>
           <a href="{{ route('Documentos_remitidos') }}">
-            <i class="fa fa-pencil"></i> <span>Borradores por Firmar</span>
+            <i class="fa fa-pencil"></i> <span>Por Enviar</span>
           </a>
         </li> 
          <li>

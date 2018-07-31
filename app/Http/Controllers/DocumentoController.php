@@ -172,7 +172,7 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
     }
 
     public function Remitidos(){
-         $codigo_menu="Borradores por Firmar";
+         $codigo_menu="Por Enviar";
       $data= array( );
         $datad= array( );
         $id_depedencia= Auth::user()->id_dependencia;
@@ -584,9 +584,12 @@ public function AgregarDocumentoConvocatoria(Request $request){
             $Ruta->save();
             }
 
-           
-            DB::commit();
-            $success=array('success'=>true,'mensaje'=>'Documento Creado con Exito!!'.$Documento->codigo_plantilla);
+            $url='creados';
+             if($id_perfil==2){//jefe de departamento
+                $url='remitidos';
+             }
+            
+            $success=array('success'=>true,'mensaje'=>'Documento Creado con Exito!!'.$Documento->codigo_plantilla,'url'=>$url);
             return response()->json($success);
     }
        }
@@ -731,7 +734,7 @@ public function AgregarDocumentoConvocatoria(Request $request){
         return redirect()->back();
     }
     public function Visto($id)
-    {
+    {   $Codigo=$id;
         DB::beginTransaction();
         $Funciones= new FuncionesController();
         $Documento=Documento::where('id_documento',$id)->get();
@@ -750,7 +753,7 @@ public function AgregarDocumentoConvocatoria(Request $request){
         $admin=$User[0]['attributes']['email'];
         $name=$User[0]['attributes']['email'];
         $fullname=$User[0]['attributes']['nombres'].' , '.$User[0]['attributes']['apellidos'];
-        $Codigo=$Circular[0]['attributes']['numero'];
+        //$Codigo=$Circular[0]['attributes']['numero'];
         $email=env('MAIL_USERNAME');
         $Funciones->Visto($name,$fullname,$Codigo,$email,$admin);
         return redirect()->back();

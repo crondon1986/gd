@@ -70,7 +70,9 @@ $("#CrearDocumento_convocatoria").click(function ()
                    $('#modalError [class= "modal-dialog  modal-sm"]').addClass('modal-success');
                    $('#modalError [class= "modal-title"]').empty().append('Informacion');
                    $('#modalError').modal('show');
-                   location.href=$('#url_base').val()+'/documentos';
+                   //alert($('#url_base').val()+);
+                   alert($('#url_base').val()+'/documentos/'+data.url);
+                   location.href=$('#url_base').val()+'/documentos/'+data.url;
                 }
                 else 
                 {

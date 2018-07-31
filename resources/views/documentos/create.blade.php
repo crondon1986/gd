@@ -120,7 +120,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Cancelar</button>
+                <button type="" class="btn btn-primary">Cancelar</button>
                 <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento_convocatoria">Generar</button>
              
               </div>
