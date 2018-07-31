@@ -282,12 +282,20 @@ class OficioControllers extends Controller
         $Funciones= new FuncionesController();
         $Oficio= Oficio::where('id_documento',$id)->get();
         $RutaOficio=new RutaOficio();
-        $RutaOficio->id_estado='3';
+        $RutaOficio->id_estado='3';  //visto
         $RutaOficio->id_oficio=$Oficio[0]['attributes']['id_oficio'];
         $RutaOficio->id_dependencia=$Oficio[0]['attributes']['id_dependencia'];
         $RutaOficio->id_user=Auth::user()->id;
         $RutaOficio->fecha=date('Y-m-d');
         $RutaOficio->save();
+           $Ruta=new Ruta;
+                $Ruta->id_estado='3';
+                $Ruta->id_documento=$id;
+                $Ruta->id_dependencia=$Oficio[0]['attributes']['id_dependencia'];
+                $Ruta->id_user=Auth::user()->id;
+                $Ruta->fecha=date('Y-m-d');
+                $Ruta->save();
+
         Documento::where('id_documento',$id)->update(['id_estados' => '3']);
         Oficio::where('id_documento',$id)->update(['id_estados' => '3']);
         $User= User::where('id_dependencia',$RutaOficio->id_dependencia)->where('id_perfil','2')->get();
@@ -451,6 +459,10 @@ $Dependencia= Dependencia::where('id_dependencia',Auth::user()->id_dependencia)-
         $RutaOficio->id_user=Auth::user()->id;
         $RutaOficio->fecha=date('Y-m-d');
         $RutaOficio->save();
+
+
+
+
         Documento::where('id_documento',$id)
           ->update(['id_estados' => '10']);
          Oficio::where('id_documento',$id)->update(['id_estados' => '10']);
@@ -530,6 +542,14 @@ $Dependencia= Dependencia::where('id_dependencia',Auth::user()->id_dependencia)-
         $RutaOficio->id_user=Auth::user()->id;
         $RutaOficio->fecha=date('Y-m-d');
         $RutaOficio->save();
+
+        $Rutas=new Ruta;
+        $Rutas->id_estado='7';
+        $Rutas->id_documento=$id;
+        $Rutas->id_dependencia=$Oficio[0]['attributes']['id_dependencia'];
+        $Rutas->id_user=Auth::user()->id;
+        $Rutas->fecha=date('Y-m-d');
+        $Rutas->save();   
         Documento::where('id_documento',$id)
           ->update(['id_estados' => '7']);
          Oficio::where('id_documento',$id)->update(['id_estados' => '7']);

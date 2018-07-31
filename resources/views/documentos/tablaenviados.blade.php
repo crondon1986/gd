@@ -21,7 +21,6 @@
       </ol>
        
     </section>
-@if( Auth::user()->id_perfil==4 || Auth::user()->id_perfil==1 || Auth::user()->id_perfil==7 || Auth::user()->id_perfil==2 || Auth::user()->id_perfil==3 || Auth::user()->id_perfil==6)
  <section class="content">
 <div class="row">
         <div class="col-xs-12">
@@ -82,42 +81,10 @@
                     </td>
                 </tr>
       @endforeach
-  @endif
-                @if(count($destinos)>0) 
-                <tr>
-                  <th>Id</th>
-                  <th>Código</th>
-                  <th>Descripción</th>
-                  <th>Estatus</th>
-                  <th>Documento</th>
-                   <th>Por</th>
-                 <th>Fecha Creado</th>
-                  <th>Acción</th>
-                </tr>
-                
-                @foreach($destinos as $item)
-                <tr> <td class="sorting_1">{{$item->id_documento}}</td>
-                        <td>{{$item->codigo_plantilla}}</td>
-                        <td>{{$item->descripcion_documento}}</td>
-                        <td><span class="label label-warning">{{$item->estados}}</span></td>
-                                       
-                   <td><span class="label label-primary">{{$item->nombre_subcategoria}}</span></td>
-                   <td><span class="label label-primary">{{$item->nombre_dependencia}}</span></td>
-                   <td>{{$item->created_at}}</td>
-                   <td><a class="btn btn-info" onclick="javascript:PdfModalCirularfirma({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title="Circular"></i></a>
-                   </td>
-                  </tr> 
-                  <tr>
-                  <td class="sorting_1">{{$item->id_documento}}</td>
-                        <td>{{$item->codigo_plantilla}}</td>
-                        <td>{{$item->descripcion_documento}}</td>
-                
-                  
-                @endforeach
-                @endif
+ @endif
+               
                  </table>
-                  @if(count($destinos)>0)   {!! $destinos->render() !!} @endif
-                    @if(count($data)>0)   {!! $data->render() !!} @endif
+                
             </div>
             <!-- /.box-body -->
           </div>
@@ -257,7 +224,7 @@
                 </div>
             </div>
         </section>
-@endif
+
 @endsection
 @section('script')
 <script src="{{ asset('js/Preparaduria.js') }}"></script>

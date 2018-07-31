@@ -98,6 +98,10 @@ Route::post('horario/CargarHorario',['as'=>'CargarHorario','uses'=>'HorarioContr
 
 Route::get('vista-html-pdf',[    'as'=>'vistaHTMLPDF',    'uses'=>'DocumentoController@vistaHTMLPDF']
 );
+
+Route::get('vista-html-pdf_convocatoria',[    'as'=>'vista-html-pdf_convocatoria',    'uses'=>'DocumentoController@vistaHTMLPDFConvocatoria']
+);
+
 Route::get('vista-html-pdf-porfirmar',[    'as'=>'vistaHTMLPDFPorFirmar',    'uses'=>'DocumentoController@vistaHTMLPDFPorFirmar']
 );
 Route::get('vista-html-pdf-firmado',[    'as'=>'vistaHTMLPDFFirmado',    'uses'=>'DocumentoController@vistaHTMLPDFFirmado']

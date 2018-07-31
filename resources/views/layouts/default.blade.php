@@ -349,8 +349,8 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('Documentos_creados') }}">
-            <i class="fa fa-send-o"></i> <span>Notificaciones</span>
+          <a href="">
+            <i class="fa fa-bell"></i> <span>Notificaciones</span>
           </a>
         </li>
   @endif 
@@ -396,6 +396,12 @@
          <li>
           <a href="{{ route('Documentos_creados') }}">
             <i class="fa fa-file"></i> <span>Borradores</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="">
+            <i class="fa fa-bell-o"></i> <span>Notificaciones</span>
           </a>
         </li>
 

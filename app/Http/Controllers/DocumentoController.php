@@ -679,7 +679,7 @@ public function AgregarDocumentoConvocatoria(Request $request){
         }
     }
     public function EnviarDocumento($id)
-    {
+    {  $Codigo=$id;
         DB::beginTransaction();
         $Funciones= new FuncionesController();
         $Documento=Documento::where('id_documento',$id)->get();
@@ -697,7 +697,8 @@ public function AgregarDocumentoConvocatoria(Request $request){
         $admin=$User[0]['attributes']['email'];
         $name=$User[0]['attributes']['email'];
         $fullname=$User[0]['attributes']['nombres'].' , '.$User[0]['attributes']['apellidos'];
-        $Codigo=$Circular[0]['attributes']['numero'];
+       // $Codigo=$Circular[0]['attributes']['numero'];
+
         $email=env('MAIL_USERNAME');
         $Funciones->EnviarDocumento($name,$fullname,$Codigo,$email,$admin);
          DB::commit();
@@ -815,6 +816,34 @@ public function AgregarDocumentoConvocatoria(Request $request){
         if(Auth::user()->id_perfil==2){
          $this->Visto($request->id_documento);}
         return view('vista-html-pdf');//RETORNO A MI VISTA
+        
+    }
+     public function vistaHTMLPDFConvocatoria(Request $request)
+    {
+         
+        $documentos = Documento::select('documento.*','dependencia.*','convocatoria.*','escuela.nombre as escuela','users.nombres','users.apellidos','users.sexo')
+                ->join('dependencia','documento.id_dependencia_c','=','dependencia.id_dependencia')
+                ->join('escuela','dependencia.id_escuela','=','escuela.id_escuela')
+                ->join('convocatoria','documento.id_documento','=','convocatoria.id_documento')
+                ->join('profesor','dependencia.id_dependencia','=','profesor.id_dependencia')
+                ->join('users','profesor.id_user','=','users.id')
+                ->where('documento.id_documento',$request->id_documento)->where('users.id_perfil','2')
+                ->get();//OBTENGO TODOS MIS PRODUCTO
+             // echo '<pre>';  printf($documentos); die();
+        view()->share('documentos',$documentos);//VARIABLE GLOBAL PRODUCTOS
+        if($request->has('descargar')){
+            $pdf = PDF::loadView('convocatorias/vista-html-pdf_convocatoria');//CARGO LA VISTA
+              $pdf->output();
+            $filename = 'circular.pdf';
+            return $pdf->stream($filename, array('Attachment' => false));
+      
+            //return $pdf->download('circular.pdf');//SUGERIR NOMBRE A DESCARGAR
+        
+            
+        }
+        if(Auth::user()->id_perfil==2){
+         $this->Visto($request->id_documento);}
+        return view('convocatorias/vista-html-pdf_convocatoria');//RETORNO A MI VISTA
         
     }
 

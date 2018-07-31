@@ -109,11 +109,12 @@
 
 
             <!--Convocatorias  acciones cuando el estado es creado editar ver el documento usuario secretaria -->
-           @if($item->id_subcategoria==100 )
+           @if($item->id_subcategoria==2 )
                   @if( $item->id_estados==1) 
-                       <a title="Remitir" class="btn btn-warning" href="{{ url('documentos/EnviarDocumento/'.$item->id_documento)}}"><i class="fa fa-fw fa-envelope" title="Enviar Documento"></i></a>
-                            <a title="Editar " class="btn btn-warning" href="{{ route('CorregirDocumento',['id_documento'=>$item->id_documento]) }}"><i class="fa fa-pencil"></i></a>
-                      <a title=" Ver "" class="btn btn-info" onclick="javascript:PdfModalCirular({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title=" Ver Circular "></i></a>
+                       <a title="Remitir" class="btn btn-warning" href="{{ url('documentos/EnviarDocumento/'.$item->id_documento)}}"><i class="fa fa-fw fa-envelope" title="Remitir"></i></a>
+
+                            <a title="Editar " class="btn btn-warning" href=""><i class="fa fa-pencil"></i></a>
+                      <a title=" Ver " title=" Ver "" class="btn btn-info" onclick="javascript:PdfModalConvocatoria({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title=" Ver "></i></a>
                   @endif
                   @if( $item->id_estados!=1) 
                        
@@ -134,13 +135,12 @@
                      
                   @endif
                    
-            @endif <!--convocatorias acciones cuando el estado es creado editar ver el documento usuario secretaria --> 
+            @endif <!--convocatorias acciones cuando el estado es creado editar ver el documento usuario secretaria -->       
+         @endif <!-- usuario secretaria
 
 
 
 
-                  
-         @endif
         
         @if(Auth::user()->id_perfil==2)
         <!--CIRCULARES acciones cuando el estado es remitido y vistos usuario Jefe de departamento vizualiz --> 
@@ -224,8 +224,9 @@
             @if($item->id_subcategoria==3  && $item->id_estados==2) 
             
 
-             <a class="btn btn-info" href="{{ url('oficioscontratacion/visto/'.$item->id_documento) }}"><i class="fa fa-fw fa-eye"></i></a>
-                             <a class="btn btn-success" href="{{ url('ubicacionoficio/show/'.$item->id_documento) }}"><i class="fa fa-fw fa-map-marker"></i></a>
+             <!--<a class="btn btn-info" href="{{ url('oficioscontratacion/visto/'.$item->id_documento) }}"><i class="fa fa-fw fa-eye"></i></a>
+                             <a class="btn btn-success" href="{{ url('ubicacionoficio/show/'.$item->id_documento) }}"><i class="fa fa-fw fa-map-marker"></i></a>-->
+                <a title="Ver" class="btn btn-info" onclick="javascript:PdfModalContratacionVisto({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" ></i></a>
 
              @endif
               @if($item->id_subcategoria==3  && $item->id_estados==3) 
@@ -249,12 +250,11 @@
              @if($item->id_subcategoria==3  && ($item->id_estados==6 || $item->id_estados==5) ) <!--por firmar -->
              <a title="Ver" class="btn btn-info" onclick="javascript:PdfModalCirular({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" ></i></a>
               <a title="Corregir" class="btn btn-warning" href="{{ route('CorregirDocumento',['id_documento'=>$item->id_documento]) }}"><i class="fa fa-pencil"></i></a>
-              <a title="Firmar" class="btn btn-success" href="{{ url('documentos/firmado/'.$item->id_documento) }}"><i class="fa fa-fw  fa-check-square-o"></i></a>
-
+             <a class="btn btn-success" href="{{ url('oficioscontratacion/firmar/'.$item->id_documento) }}"><i class="fa fa-fw  fa-check-square-o"></i></a>
 
              @endif
              @if($item->id_subcategoria==3 && $item->id_estados==7) 
-             <a title="Ver Circular" class="btn btn-info" onclick="javascript:PdfModalOficioEstructuradoFirmado({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" ></i></a>
+             <a title="Ver" class="btn btn-info" onclick="javascript:PdfModalOficioEstructuradoFirmado({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" ></i></a>
              <a class="btn btn-warning" onclick="javascript:enviar_circular({{$item->id_documento}})"><i class="fa fa-fw fa-envelope" title="Enviar Documento"></i></a>           
                 
 
