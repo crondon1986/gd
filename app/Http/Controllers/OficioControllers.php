@@ -17,6 +17,7 @@ use App\Sellos;
 use App\contrataciones;
 use App\Profesor;
 use App\RutaOficio;
+use App\Ruta;
 use App\ConcursoPreparador;
 use App\Concursos;
 use Auth;
@@ -158,6 +159,15 @@ class OficioControllers extends Controller
             $RutaOficio->id_user=Auth::user()->id;
             $RutaOficio->fecha=date('Y-m-d');
             $RutaOficio->save();
+
+
+              $Ruta=new Ruta;
+                $Ruta->id_estado=$Documento->id_estados;
+                $Ruta->id_documento=$Oficio->id_documento;
+                $Ruta->id_dependencia=$Documento->id_dependencia_c;
+                $Ruta->id_user=Auth::user()->id;
+                $Ruta->fecha=date('Y-m-d');
+                $Ruta->save();
             $Contratacion=new contrataciones();
             $Contratacion->id_oficio=$Oficio->id_oficio;
             $Contratacion->id_user=$request->contratar;
@@ -165,10 +175,22 @@ class OficioControllers extends Controller
             $Contratacion->periodo=$request->periodo;
             $Contratacion->seccion=$request->seccion;        
             $Contratacion->save();
+             $Ruta=new Ruta;
+            
+             
+              
+              // $Documento->id_estados="6";
+            
+
+
+
             if($perfil==2){
 
                 $this->CambiarEstado($Documento->id_documento);
             }
+
+
+
             DB::commit();
             $success=array('success'=>true,'mensaje'=>'Documento Creado con Exito!!'.$Documento->codigo_plantilla);
             return response()->json($success);
@@ -196,15 +218,25 @@ class OficioControllers extends Controller
         DB::beginTransaction();
         $Funciones= new FuncionesController();
         $Oficio= Oficio::where('id_documento',$id)->get();
+        $id_estado='2';//remitido
         $RutaOficio=new RutaOficio();
-        $RutaOficio->id_estado='6';
+        $RutaOficio->id_estado=$id_estado;//remitir
         $RutaOficio->id_oficio=$Oficio[0]['attributes']['id_oficio'];
         $RutaOficio->id_dependencia=$Oficio[0]['attributes']['id_dependencia'];
         $RutaOficio->id_user=Auth::user()->id;
         $RutaOficio->fecha=date('Y-m-d');
         $RutaOficio->save();
-        Documento::where('id_documento',$id)->update(['id_estados' => '6']);
-        Oficio::where('id_documento',$id)->update(['id_estados' => '6']);
+        //******************************/
+           $Ruta=new Ruta;
+                $Ruta->id_estado=$id_estado;
+                $Ruta->id_documento=$id;
+                $Ruta->id_dependencia=$Oficio[0]['attributes']['id_dependencia'];
+                $Ruta->id_user=Auth::user()->id;
+                $Ruta->fecha=date('Y-m-d');
+                $Ruta->save();
+        /*******************************/
+        Documento::where('id_documento',$id)->update(['id_estados' => $id_estado]);
+        Oficio::where('id_documento',$id)->update(['id_estados' => $id_estado]);
         $User= User::where('id_dependencia',$RutaOficio->id_dependencia)->where('id_perfil','2')->get();
         $admin=$User[0]['attributes']['email'];
         $name=$User[0]['attributes']['email'];

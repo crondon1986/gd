@@ -31,6 +31,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('documentos/',['as'=>'Documentos','uses'=>'DocumentoController@index']);
 Route::get('documentos/enviados',['as'=>'DocumentosEnviados','uses'=>'DocumentoController@enviados']);
 Route::get('documentos/recibidos',['as'=>'Documentos_recibidos','uses'=>'DocumentoController@recibidos']);
+Route::get('documentos/DocEnviados',['as'=>'Documentos_enviados','uses'=>'DocumentoController@DocEnviados']);
+
 Route::get('documentos/remitidos',['as'=>'Documentos_remitidos','uses'=>'DocumentoController@Remitidos']);
 Route::get('documentos/creados',['as'=>'Documentos_creados','uses'=>'DocumentoController@Creados']);
 

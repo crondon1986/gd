@@ -99,6 +99,17 @@ $("#id_itemsubcategoria").change(function (event)
           $('#circular').hide(); 
     }
 
+      if(subcategoria==10)//oficio
+    {
+        $('#libre').hide(); 
+        $('#pleaseWaitDialog').modal('hide');
+        $('#circular').hide();    
+        $('#estructurado').show();
+         $('#convocatoria').hide();
+    }
+
+
+
 });
 
 $("#id_dependencia").prop('selectedIndex',0);

@@ -59,7 +59,7 @@
         @if( Auth::user()->id_perfil==1   )
             <span class="logo-lg">Sesión:<b>Administrador</b></span>
         @endif
-        @if( Auth::user()->id_perfil==3   )
+        @if( Auth::user()->id_perfil==3  )
                        
           <span class="logo-lg">Sesión:<b>Secretaría</b></span>
         @endif 
@@ -238,7 +238,7 @@
           </a>
         </li> 
         @endif
-       @if(Auth::user()->id_perfil==2000000000 || Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==30 || Auth::user()->id_perfil==5 ||  Auth::user()->id_perfil==6 ||  Auth::user()->id_perfil==7)
+       @if(Auth::user()->id_perfil==2000000000 || Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==3000000 || Auth::user()->id_perfil==5 ||  Auth::user()->id_perfil==6 ||  Auth::user()->id_perfil==7)
      
        <li>
           <a href="{{ route('Preparaduria') }}">
@@ -246,7 +246,7 @@
           </a>
         </li> 
          @endif 
-          @if(Auth::user()->id_perfil==200000000|| Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==30 || Auth::user()->id_perfil==5 )
+          @if(Auth::user()->id_perfil==200000000|| Auth::user()->id_perfil==10 ||  Auth::user()->id_perfil==3055555 || Auth::user()->id_perfil==5 )
      
        <li>
           <a href="{{url('ubicacionpreparaduria/index')}}">
@@ -263,11 +263,11 @@
         </li> 
          @endif 
          @else
-         <li>
+       <!--  <li>
           <a href="{{ route('Documentos') }}">
             <i class="fa fa-files-o"></i> <span>Gestión de Documentos</span>
           </a>
-        </li> 
+        </li> -->
 
         @endif 
 
@@ -289,7 +289,7 @@
 
 
           <!--Nuevo menu de Administrador Perfil-->
-  @if(Auth::user()->id_perfil===1)
+  @if(Auth::user()->id_perfil==1)
   <li>
     <a href="{{route('Usuarios')}}">
             <i class="fa fa-user"></i> <span>Gestión de Usuarios</span>
@@ -383,14 +383,14 @@
           </a>
       </li>  
         <li>
-          <a href="{{ route('Documentos_recibidos') }}">
+          <a href="{{ route('Documentos_enviados') }}">
             <i class="fa fa-send-o"></i> <span>Enviados</span>
           </a>
         </li>
 
          <li>
           <a href="{{ route('Documentos_remitidos') }}">
-            <i class="fa fa-send-o"></i> <span>Remitidos por Firmar</span>
+            <i class="fa fa-send-o"></i> <span>Borradores por Firmar</span>
           </a>
         </li> 
          <li>
