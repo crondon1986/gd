@@ -79,26 +79,65 @@
                     <td>
                     
          @if(Auth::user()->id_perfil==3)      
-         <!--CIRCULARES acciones cuando el estado es creado editar ver el documento usuario secretaria --> 
-                  @if($item->id_subcategoria==1  && $item->id_estados==1) 
+         <!--CIRCULARES acciones cuando el estado es creado editar ver el documento usuario secretaria -->
+           @if($item->id_subcategoria==1 )
+                  @if( $item->id_estados==1) 
                        <a title="Remitir" class="btn btn-warning" href="{{ url('documentos/EnviarDocumento/'.$item->id_documento)}}"><i class="fa fa-fw fa-envelope" title="Enviar Documento"></i></a>
                             <a title="Editar " class="btn btn-warning" href="{{ route('CorregirDocumento',['id_documento'=>$item->id_documento]) }}"><i class="fa fa-pencil"></i></a>
                       <a title=" Ver "" class="btn btn-info" onclick="javascript:PdfModalCirular({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title=" Ver Circular "></i></a>
                   @endif
-                  @if($item->id_subcategoria==1  && $item->id_estados!=1) 
+                  @if( $item->id_estados!=1) 
                        
                       <a title=" Ver Circular " class="btn btn-info" onclick="javascript:PdfModalCirular({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title=" Ver Circular "></i></a>
 
                      
                   @endif
 
-                  @if($item->id_subcategoria==1  &&  $item->id_estados==4) 
+                  @if(    $item->id_estados==4) 
                             
                              <a class="btn btn-warning" href="{{ route('CorregirDocumento',['id_documento'=>$item->id_documento]) }}"><i class="fa fa-pencil"></i></a>
 
                      
                   @endif
-                   <!--convocatorias acciones cuando el estado es creado editar ver el documento usuario secretaria --> 
+                  @if(  $item->id_estados==7) 
+                                
+                      <a class="btn btn-info" onclick="javascript:PdfModalCirularfirma({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title="Circular firmado"></i></a>
+                     
+                  @endif
+                   
+            @endif <!--fin circulares secretaria acciones cuando el estado es creado editar ver el documento usuario secretaria --> 
+
+
+            <!--Convocatorias  acciones cuando el estado es creado editar ver el documento usuario secretaria -->
+           @if($item->id_subcategoria==100 )
+                  @if( $item->id_estados==1) 
+                       <a title="Remitir" class="btn btn-warning" href="{{ url('documentos/EnviarDocumento/'.$item->id_documento)}}"><i class="fa fa-fw fa-envelope" title="Enviar Documento"></i></a>
+                            <a title="Editar " class="btn btn-warning" href="{{ route('CorregirDocumento',['id_documento'=>$item->id_documento]) }}"><i class="fa fa-pencil"></i></a>
+                      <a title=" Ver "" class="btn btn-info" onclick="javascript:PdfModalCirular({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title=" Ver Circular "></i></a>
+                  @endif
+                  @if( $item->id_estados!=1) 
+                       
+                      <a title=" Ver Circular " class="btn btn-info" onclick="javascript:PdfModalCirular({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title=" Ver Circular "></i></a>
+
+                     
+                  @endif
+
+                  @if(    $item->id_estados==4) 
+                            
+                             <a class="btn btn-warning" href="{{ route('CorregirDocumento',['id_documento'=>$item->id_documento]) }}"><i class="fa fa-pencil"></i></a>
+
+                     
+                  @endif
+                  @if(  $item->id_estados==7) 
+                                
+                      <a class="btn btn-info" onclick="javascript:PdfModalCirularfirma({{$item->id_documento}})" ><i class="fa fa-fw fa-eye" title="Circular firmado"></i></a>
+                     
+                  @endif
+                   
+            @endif <!--convocatorias acciones cuando el estado es creado editar ver el documento usuario secretaria --> 
+
+
+
 
                   
          @endif

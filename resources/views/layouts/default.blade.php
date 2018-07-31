@@ -292,17 +292,17 @@
   @if(Auth::user()->id_perfil==1)
   <li>
     <a href="{{route('Usuarios')}}">
-            <i class="fa fa-user"></i> <span>Gestión de Usuarios</span>
+            <i class="fa fa-users"></i> <span>Gestión de Usuarios</span>
           </a>
   </li> 
   <li>
     <a href="">
-            <i class="fa fa-"></i> <span>Gestión de Formatos</span>
+            <i class="fa fa-clipboard"></i> <span>Gestión de Formatos</span>
     </a>
   </li>
   <li>
     <a href="">
-            <i class="fa fa-"></i> <span>Gestión de Calendarios</span>
+            <i class="fa fa-calendar-check-o"></i> <span>Gestión de Calendarios</span>
     </a>
   </li> 
   @endif 
@@ -340,12 +340,12 @@
 
          <li>
           <a href="{{ route('Documentos_remitidos') }}">
-            <i class="fa fa-send-o"></i> <span>Borradores por Firmar</span>
+            <i class="fa fa-pencil"></i> <span>Borradores por Firmar</span>
           </a>
         </li> 
          <li>
           <a href="{{ route('Documentos_creados') }}">
-            <i class="fa fa-send-o"></i> <span>Borradores</span>
+            <i class="fa fa-file"></i> <span>Borradores</span>
           </a>
         </li>
         <li>
@@ -390,12 +390,12 @@
 
          <li>
           <a href="{{ route('Documentos_remitidos') }}">
-            <i class="fa fa-send-o"></i> <span>Borradores por Firmar</span>
+            <i class="fa fa-pencil"></i> <span>Borradores por Firmar</span>
           </a>
         </li> 
          <li>
           <a href="{{ route('Documentos_creados') }}">
-            <i class="fa fa-send-o"></i> <span>Borradores</span>
+            <i class="fa fa-file"></i> <span>Borradores</span>
           </a>
         </li>
 
