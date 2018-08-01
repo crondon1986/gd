@@ -318,6 +318,44 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
                 ->pluck('fullname','id'); 
         return view('documentos/create')->with(['Asignatura'=>$Asignatura,'Profesor'=>$Profesor,'TipoOficio'=>$TipoOficio,'Usuarios'=>$Usuarios,'Perfil'=>$Perfil,'Dependencia'=>$Dependencia,'Categoria'=>$Categoria,'SubCategoria'=>$SubCategoria,'ItemSubCategoria'=>$ItemSubCategoria]);
     }
+
+
+        public function create_documento($id)
+    {
+
+         $Categoria=Categoria::pluck('nombre_categoria','id_categoria');
+        $SubCategoria=Subcategoria::pluck('nombre_subcategoria','id_subcategoria');
+        $ItemSubCategoria= Itemsubcategoria::pluck('nombre_itemsubcategoria','id_itemsubcategoria');
+        $Dependencia=Dependencias::pluck('nombre','id_dependencias');
+        $TipoOficio=TipoOficio::pluck('nombre','id_tipo_oficio');
+        $Perfil=Perfil::pluck('nombre_perfil','id_perfil');
+        $Profesor = User::select(DB::table('users')
+                ->raw("CONCAT(users.nombres,' ',users.apellidos)  AS nombre"),'id')->where('id_dependencia',Auth::user()->id_dependencia)->where('id_perfil','4')
+                ->pluck('nombre','id'); 
+        $Asignatura= Asignaturas::pluck('nombre','id_asignatura');
+        $Usuarios = User::select(DB::table('users')
+                ->raw("CONCAT(users.nombres,' ',users.apellidos)  AS fullname"),'id')->where('id_perfil','6')
+                ->pluck('fullname','id'); 
+        
+
+
+        switch ($id) {
+            case '1':
+                $url='circulares/create';
+                break;
+             case '2':
+                $url='convocatorias/create';
+                break;
+            default:
+              
+                break;
+
+        }
+        return view($url)->with(['Asignatura'=>$Asignatura,'Profesor'=>$Profesor,'TipoOficio'=>$TipoOficio,'Usuarios'=>$Usuarios,'Perfil'=>$Perfil,'Dependencia'=>$Dependencia,'Categoria'=>$Categoria,'SubCategoria'=>$SubCategoria,'ItemSubCategoria'=>$ItemSubCategoria]);
+    }
+
+
+
     public function AgregarDocumento(Request $request){
          $rules = array(
             'descripcion_documento' => 'required',

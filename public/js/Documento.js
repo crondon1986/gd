@@ -10,9 +10,9 @@ $("#CrearDocumento").click(function ()
                         '_token': $('input[name=_token]').val(),
                         'descripcion_documento': $('input[name=descripcion_documento]').val(),
                         'para': $('input[name=para]').val(),
-                        'id_categoria': $('select[name=id_categoria]').val(),
-                        'id_subcategoria': $('select[name=id_subcategoria]').val(),
-                        'id_itemsubcategoria': $('select[name=id_itemsubcategoria]').val(),
+                        'id_categoria': 1,//$('select[name=id_categoria]').val(),
+                        'id_subcategoria': 1,//$('select[name=id_subcategoria]').val(),
+                        'id_itemsubcategoria': 1,//$('select[name=id_itemsubcategoria]').val(),
                         'cuerpo':$('#cuerpo').val()
                   },
             success: function (data) 
@@ -24,7 +24,7 @@ $("#CrearDocumento").click(function ()
                    $('#modalError [class= "modal-dialog  modal-sm"]').addClass('modal-success');
                    $('#modalError [class= "modal-title"]').empty().append('Informacion');
                    $('#modalError').modal('show');
-                   location.href=$('#url_base').val()+'/documentos';
+                   location.href=$('#url_base').val()+'/inicio1';
                 }
                 else 
                 {
@@ -45,7 +45,8 @@ $("#CrearDocumento").click(function ()
  });
 
 $("#CrearDocumento_convocatoria").click(function () 
-{    var contenido = CKEDITOR.instances['editor_convocatoria'].getData();//estraer el html
+{   
+alert("dfgdf"); var contenido = CKEDITOR.instances['editor'].getData();//estraer el html
   $('#cuerpo_convocatoria').val(contenido);
         $('#pleaseWaitDialog').modal('show');
          $.ajax
@@ -56,9 +57,9 @@ $("#CrearDocumento_convocatoria").click(function ()
                         '_token': $('input[name=_token]').val(),
                         'descripcion_documento': $('input[name=descripcion_documento_convocatoria]').val(),
                         'para': $('input[name=para_convocatoria]').val(),
-                        'id_categoria': $('select[name=id_categoria]').val(),
-                        'id_subcategoria': $('select[name=id_subcategoria]').val(),
-                        'id_itemsubcategoria': $('select[name=id_itemsubcategoria]').val(),
+                        'id_categoria': 1,//$('select[name=id_categoria]').val(),
+                        'id_subcategoria': 2, //$('select[name=id_subcategoria]').val(),
+                        'id_itemsubcategoria': 11, //$('select[name=id_itemsubcategoria]').val(),
                         'cuerpo':$('#cuerpo_convocatoria').val()
                   },
             success: function (data) 
@@ -70,9 +71,9 @@ $("#CrearDocumento_convocatoria").click(function ()
                    $('#modalError [class= "modal-dialog  modal-sm"]').addClass('modal-success');
                    $('#modalError [class= "modal-title"]').empty().append('Informacion');
                    $('#modalError').modal('show');
-                   //alert($('#url_base').val()+);
-                   alert($('#url_base').val()+'/documentos/'+data.url);
-                   location.href=$('#url_base').val()+'/documentos/'+data.url;
+                // alert($('#url_base').val());
+                 //  alert($('#url_base').val()+'/documentos/'+data.url);
+                   location.href=$('#url_base').val()+'/inicio1';
                 }
                 else 
                 {

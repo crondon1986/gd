@@ -42,10 +42,13 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- Google Font 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+  <div class="row" id="banner-tp">
+  <img style="margin: 0 auto" src="{{ url('image/banner-sistema-en todas-6.jpg')}}" class="img-responsive" alt="cargándose imagen de Banner sistema">
+</div>
 <div class="wrapper">
 
   <header class="main-header">
@@ -323,6 +326,12 @@
       <li>
           <a href="{{route('CrearDocumento')}}" >
             <i class="fa fa-home"></i> <span>Crear</span>
+          </a>
+      </li>
+
+      <li>
+          <a href="{{route('crear_1')}}" >
+            <i class="fa fa-plus"></i> <span>Crear_1</span>
           </a>
       </li>
      

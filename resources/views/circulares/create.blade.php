@@ -6,15 +6,16 @@
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href=""><i class=""></i> </a></li>
+       
         <li class="active">Crear</li>
       </ol>
     </section>
  <section class="content">
-
-<div class="box box-primary" style="display:;" id="convocatoria">
+   <!-- general form elements -->
+        
+<div class="box box-primary" style="display" id="circular">
             <div class="box-header with-border">
-              <h3 class="box-title">Convocatoria</h3>
+              <h3 class="box-title">Circular</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -23,33 +24,42 @@
                  <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="telefono">Descripción del Documento</label>
-                                <input type="text" class="form-control" id="descripcion_documento_convocatoria" name="descripcion_documento_convocatoria" placeholder="Descripcion  del Documento" required>
+                                <input type="text" class="form-control" id="descripcion_documento" name="descripcion_documento" placeholder="Descripcion  del Documento" required>
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="telefono">Para</label>
-                                <input type="text" class="form-control" id="para_convocatoria" name="para_convocatoria" placeholder="Para" required>
+                                <input type="text" class="form-control" id="para" name="para" placeholder="Para" required>
                             </div>
                         </div>
                   <div class="col-sm-12">
                         <label>Cuerpo del Documento</label>
-                        <input type="hidden" class="form-control" id="cuerpo_convocatoria" name="cuerpo_convocatoria" placeholder="Para" required>
+                        <input type="hidden" class="form-control" id="cuerpo" name="cuerpo" placeholder="Para" required>
                     <textarea class="form-control" rows="6" cols="10" placeholder="Cuerpo del Documento ..." name="editor" id="editor"></textarea>
                     </div>
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="" class="btn btn-primary">Cancelar</button>
-                <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento_convocatoria">Generar</button>
-             
+                <div class="col-sm-12">
+                  
+                  <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento">Generar</button>
+
+                  <button  class="btn btn-success pull-right" type="submit" id="CrearDocumento">Generar y Remitir</button>
+                  <button type="submit" class="btn btn-primary">Cancelar</button>
+                </div>
               </div>
               
           
           </div>
-  
+
  </section>
+
+            
+              
+          
+          
 
 <!--     Modales           -->
     

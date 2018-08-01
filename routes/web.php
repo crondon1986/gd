@@ -36,8 +36,13 @@ Route::get('documentos/DocEnviados',['as'=>'Documentos_enviados','uses'=>'Docume
 Route::get('documentos/remitidos',['as'=>'Documentos_remitidos','uses'=>'DocumentoController@Remitidos']);
 Route::get('documentos/creados',['as'=>'Documentos_creados','uses'=>'DocumentoController@Creados']);
 
-
+Route::get('inicio1/',['as'=>'crear_1','uses'=>'HomeController@index1']); // crear nuevo
 Route::get('documentos/create',['as'=>'CrearDocumento','uses'=>'DocumentoController@create']);
+
+
+Route::get('create_documento/{id}','DocumentoController@create_documento'); 
+
+
 Route::post('documentos/agregarDocumento','DocumentoController@AgregarDocumento' );
 Route::post('documentos/agregarDocumentoConvocatoria','DocumentoController@AgregarDocumentoConvocatoria' );
 Route::put('documentos/corregirDocumento/{id}','DocumentoController@CorregirDocumentos' );
