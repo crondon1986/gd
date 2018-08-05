@@ -10,7 +10,21 @@
             <p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>{{ $documento->nombre_dependencia }}</strong></span></span></p>
             <p style="text-align:right"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">cuman&aacute;, <?php echo date('d-m-Y');?></span></span></p>
             <p style="text-align:right"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong></strong></span></span></p>
-            <p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>PARA: &nbsp;{{ $documento->para_circular}}</strong></span></span></p>
+<?php
+$array=explode(',',$documento->para_circular);
+ $para_circular='';
+$arr_grupos=array('','PROFERORES','ESTUDIANTES');
+
+//print_r($array);
+for ($i=0;$i<count($array);$i++) {
+   
+   $para_circular[]= $arr_grupos[$array[$i]];
+}
+  $para_circular=implode(', ',  $para_circular);
+?>
+
+
+            <p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>PARA: &nbsp;{{  $para_circular}}</strong></span></span></p>
             <p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>DE: &nbsp;{{ $documento->de_circular}}</strong></span></span></p>
 <p style="text-align:center"><strong>Circular N°  {{ $documento->numero}} </strong></p>
 

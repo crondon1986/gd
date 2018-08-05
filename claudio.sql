@@ -20,3 +20,9 @@ CREATE TABLE `convocatoria` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `itemsubcategoria` (`id_itemsubcategoria`, `id_subcategoria`, `nombre_itemsubcategoria`, `descripcion_itemsubcategoria`, `created_at`, `updated_at`) VALUES (NULL, '2', 'Evento', ' Evento de Convocatoria', NULL, NULL);
+
+/*04/08/2018*/
+
+ALTER TABLE `oficio` ADD `tipo` VARCHAR(100) NULL DEFAULT 'contratacion' AFTER `cuerpo`;
+ALTER TABLE `oficio` ADD `formap1` TEXT  AFTER `tipo`;
+ALTER TABLE `oficio` ADD `fichatecnica` TEXT  AFTER `formap1`;

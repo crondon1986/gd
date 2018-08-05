@@ -12,7 +12,7 @@
     </section>
  <section class="content">
 
-<div class="box box-primary" style="display:;" id="convocatoria">
+<div class="box box-primary" style="" id="convocatoria">
             <div class="box-header with-border">
               <h3 class="box-title">Convocatoria</h3>
             </div>
@@ -35,14 +35,14 @@
                   <div class="col-sm-12">
                         <label>Cuerpo del Documento</label>
                         <input type="hidden" class="form-control" id="cuerpo_convocatoria" name="cuerpo_convocatoria" placeholder="Para" required>
-                    <textarea class="form-control" rows="6" cols="10" placeholder="Cuerpo del Documento ..." name="editor" id="editor"></textarea>
+                    <textarea class="form-control" rows="6" cols="10" placeholder="Cuerpo del Documento ..." name="editor_convocatoria" id="editor_convocatoria"></textarea>
                     </div>
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
                 <button type="" class="btn btn-primary">Cancelar</button>
-                <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento_convocatoria">Generar</button>
+                <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento_convocatoria">Crear</button>
              
               </div>
               
@@ -93,7 +93,7 @@
 @section('script')
 <script src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
-   CKEDITOR.replace( 'editor' );
+ //  CKEDITOR.replace( 'editor' );
    CKEDITOR.replace( 'editor_convocatoria' );
 </script>
 <script src="{{ asset('js/Documento.js') }}"></script>

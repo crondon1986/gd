@@ -40,20 +40,47 @@ class OficioControllers extends Controller
     }
     public function AgregarOficio(Request $request)
     {
+        
+//print_r($request->tipo_contratacion);die();
         $perfil=Auth::user()->id_perfil;
         $rules = array(
             'para' => 'required',
+            'periodo'=>'required',
+            'tipo_contratacion'=>'required',
+            'asignatura'=>'required',
+            'seccion'=>'required',
             'id_categoria' => 'required',
             'id_subcategoria' => 'required',
             'id_itemsubcategoria' =>'required',
            
             
         );    
+
+ /*'_token': $('input[name=_token]').val(),
+                        'seccion': $('input[name=seccion]').val(),            
+                        'contratar': $('select[name=id]').val(),
+                        'para': $('select[name=id_para]').val(),
+                        'id_categoria': $('#id_categoria').val(),
+                        'id_subcategoria': $('#id_subcategoria').val(),
+                        'id_itemsubcategoria': $('#id_itemsubcategoria').val(),
+                        'asignatura':$('select[name=id_asignatura]').val(),
+                        'periodo':$('select[name=periodo]').val(),
+                        'concopia':'['+$("#id_dependencias").val()+']',
+                        'tipo_contratacion':$('select[name=tipo_contratacion]').val()*/
+
+
+
         $mensajes=array(
             'id_categoria.required'=>'La Categoria Es Obligatoria',
             'id_subcategoria.required'=>'El Tipo De Documento Es  Obligatorio',
             'id_itemsubcategoria.required'=>'La Plantilla Es  Obligatoria',
             'para.required'=>'Para Es  Obligatorio',
+            'tipo_contratacion.required'=>'Tipo es Obligatorio',
+            'periodo.required'=>' el Periodo es Obligatorio',
+            'id_asignatura.required'=>'La Asignatura es Obligatoria',
+            'seccion.required'=>'La Sección es Obligatoria',
+            
+
         ); 
         $validator = Validator::make(Input::all(), $rules,$mensajes);
         if ($validator->fails())
@@ -76,12 +103,13 @@ class OficioControllers extends Controller
             $Sexo=$Profesor[0]['attributes']['sexo'];
             if($Sexo=='Femenino')
             {
-                $de="PROFA. ". $Profesor[0]['attributes']['nombres'].' '.$Profesor[0]['attributes']['apellidos'];
+                $de="PROFA. ". mb_strtoupper($Profesor[0]['attributes']['nombres'].' '.$Profesor[0]['attributes']['apellidos']);
             }
             if($Sexo=='Masculino')
             {
-                $de="PROF. ". $Profesor[0]['attributes']['nombres'].' '.$Profesor[0]['attributes']['apellidos'];
+                $de="PROF. ". mb_strtoupper( $Profesor[0]['attributes']['nombres'].' '.$Profesor[0]['attributes']['apellidos']);
             }
+
             $Dependencias=Dependencia::where('id_dependencia',Auth::user()->id_dependencia)->get();
             $codigo_documento_generado=time();
             $Documento = new Documento();
@@ -91,11 +119,15 @@ class OficioControllers extends Controller
             $Documento->id_subcategoria=$request->id_subcategoria;
             $Documento->id_itemsubcategoria=$request->id_itemsubcategoria;
            // if($perfil==3)//secretaria
-            $Documento->id_estados="1";
+            $Documento->id_estados="1";//creado
             
             $Documento->codigo_plantilla=$codigo_documento_generado;
-            $Documento->descripcion_documento='Oficio de Contratacion';
-		    $Documento->save();
+            if($request->tipo_contratacion=='contratacion'){
+            $Documento->descripcion_documento='Oficio de Contratación';
+            }else{
+                 $Documento->descripcion_documento='Oficio de Recontratación';
+            }
+            $Documento->save();
             $Oficio=new Oficio();
             if($Total>0)
             {   
@@ -113,7 +145,10 @@ class OficioControllers extends Controller
                 $Oficio->anio=$year;
                 $Oficio->acronimo=$acronimo;
                 $Oficio->fecha=$fecha;
+                $Oficio->tipo=$request->tipo_contratacion;
 				$Oficio->nota="OFICIO DE CONTRATACION";
+                 if($request->tipo_contratacion=='recontratacion')
+                    $Oficio->nota="OFICIO DE RECONTRATACION";
 				$Oficio->de=$de; 
 		       $Oficio->cuerpo='Oficio de Conratacion';	
               $Oficio->save();
@@ -135,7 +170,10 @@ class OficioControllers extends Controller
                 $Oficio->anio=$year;
                 $Oficio->acronimo=$acronimo;
                 $Oficio->fecha=$fecha;
-				$Oficio->nota="OFICIO DE CONTRATACION";
+                 $Oficio->tipo=$request->tipo_contratacion;
+                $Oficio->nota="OFICIO DE CONTRATACION";
+                 if($request->tipo_contratacion=='recontratacion')
+                    $Oficio->nota="OFICIO DE RECONTRATACION";
             $Oficio->de=$de; 
 		 $Oficio->cuerpo='Oficio de Conratacion';	
 
@@ -168,6 +206,7 @@ class OficioControllers extends Controller
                 $Ruta->id_user=Auth::user()->id;
                 $Ruta->fecha=date('Y-m-d');
                 $Ruta->save();
+
             $Contratacion=new contrataciones();
             $Contratacion->id_oficio=$Oficio->id_oficio;
             $Contratacion->id_user=$request->contratar;
@@ -208,6 +247,13 @@ class OficioControllers extends Controller
         $RutaOficio->id_user=Auth::user()->id;
         $RutaOficio->fecha=date('Y-m-d');
         $RutaOficio->save();
+        $Ruta=new Ruta;
+                $Ruta->id_estado=6;
+                $Ruta->id_documento=$Oficio->id_documento;
+                $Ruta->id_dependencia=$Oficio[0]['attributes']['id_dependencia'];
+                $Ruta->id_user=Auth::user()->id;
+                $Ruta->fecha=date('Y-m-d');
+                $Ruta->save();
         Documento::where('id_documento',$id)->update(['id_estados' => '6']);
         Oficio::where('id_documento',$id)->update(['id_estados' => '6']);
         DB::commit();

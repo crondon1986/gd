@@ -121,7 +121,7 @@
 
               <div class="box-footer">
                 <button type="" class="btn btn-primary">Cancelar</button>
-                <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento_convocatoria">Generar</button>
+                <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento_convocatoria">Crear</button>
              
               </div>
               

@@ -319,11 +319,9 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
         return view('documentos/create')->with(['Asignatura'=>$Asignatura,'Profesor'=>$Profesor,'TipoOficio'=>$TipoOficio,'Usuarios'=>$Usuarios,'Perfil'=>$Perfil,'Dependencia'=>$Dependencia,'Categoria'=>$Categoria,'SubCategoria'=>$SubCategoria,'ItemSubCategoria'=>$ItemSubCategoria]);
     }
 
-
-        public function create_documento($id)
+    public function create_documento($id)
     {
-
-         $Categoria=Categoria::pluck('nombre_categoria','id_categoria');
+        $Categoria=Categoria::pluck('nombre_categoria','id_categoria');
         $SubCategoria=Subcategoria::pluck('nombre_subcategoria','id_subcategoria');
         $ItemSubCategoria= Itemsubcategoria::pluck('nombre_itemsubcategoria','id_itemsubcategoria');
         $Dependencia=Dependencias::pluck('nombre','id_dependencias');
@@ -336,15 +334,15 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
         $Usuarios = User::select(DB::table('users')
                 ->raw("CONCAT(users.nombres,' ',users.apellidos)  AS fullname"),'id')->where('id_perfil','6')
                 ->pluck('fullname','id'); 
-        
-
-
         switch ($id) {
             case '1':
                 $url='circulares/create';
                 break;
              case '2':
                 $url='convocatorias/create';
+                break;
+             case '3':
+                $url='oficios/create_contratacion';
                 break;
             default:
               
@@ -357,15 +355,16 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
 
 
     public function AgregarDocumento(Request $request){
+         
+
+
          $rules = array(
             'descripcion_documento' => 'required',
-            'para' => 'required',
+            'id_destinos_para' => 'required',
             'cuerpo' => 'required',
             'id_categoria' => 'required',
             'id_subcategoria' => 'required',
-            'id_itemsubcategoria' =>'required',
-           
-            
+            'id_itemsubcategoria' =>'required',  
             );    
         $mensajes=array(
             'id_categoria.required'=>'La Categoria Es Obligatoria',
@@ -381,6 +380,12 @@ WHERE ruta.id_dependencia=2 and ruta.id_user=3 and documento.id_dependencia_c=2 
         else 
         {
             DB::beginTransaction();
+            $para=array();
+            //$para=$request->id_destinos_para;
+             $para=json_decode($request->id_destinos_para,true);
+             $para=implode(',', $para);
+           // print_r( $para);die();
+            $request->para= $para;
             $User=User::where('id',Auth::user()->id)->get();
             $IdDependencia=$User[0]['attributes']['id_dependencia'];
             $id_perfil=$User[0]['attributes']['id_perfil'];
@@ -633,6 +638,10 @@ public function AgregarDocumentoConvocatoria(Request $request){
        }
     public function CorregirDocumentos(Request $request)   
     {
+       
+
+
+
        $rules = array(
             'descripcion_documento' => 'required',
             'para' => 'required',
@@ -983,6 +992,50 @@ public function AgregarDocumentoConvocatoria(Request $request){
 
     public function EnviarDocumentocircular(Request $request){
 //echo '<pre>';print_r($request->concopia);
+        if($request->concopia!="")
+            {
+                $data=json_decode($request->concopia,true);
+                foreach ($data as $row)
+                {   
+                    $OficioCopia=new Destinos();
+                    $OficioCopia->id_documento=$request->id_documento;
+                    $OficioCopia->id_estado=17;//enviados a otros departamentos
+                    $OficioCopia->id_dependencia=$row;
+                    $OficioCopia->save();
+                    $Rutas=new Ruta;
+                    $Rutas->id_estado='17';
+                    $Rutas->id_documento=$request->id_documento;
+                    $Rutas->id_dependencia=$row;//$Documento[0]['attributes']['id_dependencia_c'];
+                    $Rutas->id_user=Auth::user()->id;
+                    $Rutas->fecha=date('Y-m-d');
+                    $Rutas->save();
+                } 
+            }
+            Documento::where('id_documento',$request->id_documento)->update(['id_estados' => '17']);
+
+           
+             DB::commit();
+            $success=array('success'=>true,'mensaje'=>'Documento Enviado con exito!!');
+            return response()->json($success);
+    }
+
+     public function EnviarDocumentocirculargrupos(Request $request){
+//echo '<pre>';print_r($request->id_documento);
+ $Circular=Circular::where('id_documento',$request->id_documento)->get();
+ $array_grupos=explode(',',$Circular[0]['attributes']['para_circular']);
+ for($i=0;$i<count($array_grupos);$i++){
+    if($array_grupos[$i]==1){
+        //capturar los id de los usuarios profesores
+        $user = User::where('id_perfil',4)->where('id_dependencia',Auth::user()->id_dependencia)->get();
+    }
+    if($array_grupos[$i]==2){
+        //capturar los id Estudiantes
+         $user = User::where('id_perfil',5)->where('id_dependencia',Auth::user()->id_dependencia)->get();
+    }
+ }
+ //Profesores de Informatica
+echo '<pre>';print_r($user); die();
+
         if($request->concopia!="")
             {
                 $data=json_decode($request->concopia,true);

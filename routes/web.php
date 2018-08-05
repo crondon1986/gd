@@ -157,7 +157,7 @@ Route::group(['prefix' => 'profile'],function(){
 
 Route::post('circular/enviarcircular',['as'=>'enviarcircular','uses'=>'DocumentoController@EnviarDocumentocircular']);
 
-
+Route::post('circular/enviarcirculargrupos',['as'=>'enviarcirculargrupos','uses'=>'DocumentoController@EnviarDocumentocirculargrupos']);
 
 /*RUTAS DEL USUARIO ADMIN*/
 Route::get('usuarios/',['as'=>'Usuarios','uses'=>'UserController@index']);

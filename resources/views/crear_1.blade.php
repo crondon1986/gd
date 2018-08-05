@@ -40,7 +40,7 @@
                   <ul>
             <a href="general.html"><i class="fa  fa-calendar-o"></i>&nbsp   POA</a><br>
             <a href="icons.html"><i class="fa fa- fa-file-text-o"></i>&nbsp     Memoria y Cuentas</a><br>
-            <a class="menu_documento" valor=3 href="buttons.html"><i class="fa  fa-file-text-o"></i>&nbsp   Contratación </a><br>
+            <a class="menu_documento" valor=3 href="http://localhost/gd/public/create_documento/3"><i class="fa  fa-file-text-o"></i>&nbsp   Contratación </a><br>
             <a href="sliders.html"><i class="fa  fa-file-text-o"></i>&nbsp   Petición de Materia</a><br>
             <a href="timeline.html"><i class="fa  fa-file-text-o"></i>&nbsp  Carta de excepción</a><br>
             <a href="modals.html"><i class="fa  fa-file-text-o"></i>&nbsp    Postulacion de jurado</a><br>

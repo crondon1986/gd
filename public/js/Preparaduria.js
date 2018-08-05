@@ -467,6 +467,59 @@ $('#Enviar_circular').click(function(){
 
 }
 
+function enviar_circular1(id_documento){
+
+   $('#pleaseWaitDialog').modal('show');
+    $.ajax
+    ({
+            type: 'post',
+            url:  $('#url_base').val()+'/circular/enviarcirculargrupos',
+            data: {
+                        '_token': $('input[name=_token]').val(),
+                       'id_documento': id_documento,
+                       /* 'nota': $('input[name=nota]').val(),
+                        'promedio': $('input[name=promedio]').val(),
+                        'id_asignatura': $('select[name=id_asignatura]').val(),
+                        'semestre': $('select[name=id_semestre]').val(),
+                        'periodo': $('select[name=id_periodo]').val(),*/
+                        'concopia':'['+$("#id_dependencia").val()+']',
+                      /*  'imgRecord': $('input[name=imgRecord]').val(),
+                        'imgInscripcion': $('input[name=imgInscripcion]').val(),
+                        'imgEstudio': $('input[name=imgEstudio]').val(),
+                        'imgCurriculum': $('input[name=imgCurriculum]').val()*/
+                  },
+            success: function (data) 
+            {
+                if ((data.success==true)) 
+                {
+                   $('#pleaseWaitDialog').modal('hide');
+                   $('#modalerrorbody').empty().append(data.mensaje);
+                   $('#modalError [class= "modal-dialog  modal-sm"]').addClass('modal-success');
+                   $('#modalError [class= "modal-title"]').empty().append('Informacion');
+                   $('#modalError').modal('show');
+                   location.href=$('#url_base').val()+'/documentos';
+                }
+                else 
+                {
+                   var mensaje='';
+                   for(var i=0;i<data.errors.length;i++)
+                   {
+                        mensaje+=data.errors[i]+'<br>';
+                   }
+                   $('#pleaseWaitDialog').modal('hide');
+                   $('#modalerrorbody').empty().append(mensaje);
+                   $('#modalError [class= "modal-dialog  modal-sm"]').addClass('modal-danger');
+                   $('#modalError [class= "modal-title"]').empty().append('Ha ocurrido un error');
+                   $('#modalError').modal('show');
+                   
+                }
+            }
+      });
+
+
+
+}
+
 
  function cerrar_modal (id_documento){
 alert(id_documento);

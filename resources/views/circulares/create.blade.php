@@ -13,7 +13,7 @@
  <section class="content">
    <!-- general form elements -->
         
-<div class="box box-primary" style="display" id="circular">
+<div class="box box-primary" style="" id="circular">
             <div class="box-header with-border">
               <h3 class="box-title">Circular</h3>
             </div>
@@ -30,7 +30,12 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="telefono">Para</label>
-                                <input type="text" class="form-control" id="para" name="para" placeholder="Para" required>
+                            <!--    <input type="text" class="form-control" id="para" name="para" placeholder="Para" required>-->
+                                <select class="form-control" name="id_destinos_para[]" id="id_destinos_para" multiple="multiple"> 
+                                    <option>Seleccione Grupo de destions</option>
+                                    <option value="1" >PROFESORES</option>
+                                     <option value="2" >ESTUDIANTES</option>
+                                    </select>
                             </div>
                         </div>
                   <div class="col-sm-12">
@@ -41,7 +46,7 @@
               </div>
               <!-- /.box-body -->
 
-              <div class="box-footer">
+             <!-- <div class="box-footer">
                 <div class="col-sm-12">
                   
                   <button  class="btn btn-primary pull-right" type="submit" id="CrearDocumento">Generar</button>
@@ -49,6 +54,22 @@
                   <button  class="btn btn-success pull-right" type="submit" id="CrearDocumento">Generar y Remitir</button>
                   <button type="submit" class="btn btn-primary">Cancelar</button>
                 </div>
+
+              
+              </div>-->
+              <div class="box-footer">
+                
+                <div class="text-right boton-margin">
+
+                                    <button type="button" class="btn btn-primary" type="submit" id="CrearDocumento">Crear</button>
+                                    
+                                    <button type="button" class="btn btn-default" onclick="">Cancelar</button>
+
+                                   <!-- <input id="opc" name="opc" value="new" type="hidden">-->
+                                   <!-- <input id="id" name="id" value="-1" type="hidden">-->
+
+                    </div>
+                
               </div>
               
           
@@ -105,6 +126,10 @@
 <script type="text/javascript">
    CKEDITOR.replace( 'editor' );
    CKEDITOR.replace( 'editor_convocatoria' );
+
+$("#id_destinos_para").select2({
+ // maximumSelectionLength: 5
+});
 </script>
 <script src="{{ asset('js/Documento.js') }}"></script>
 <script src="{{ asset('js/dropdown.js') }}"></script>

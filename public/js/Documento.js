@@ -13,7 +13,8 @@ $("#CrearDocumento").click(function ()
                         'id_categoria': 1,//$('select[name=id_categoria]').val(),
                         'id_subcategoria': 1,//$('select[name=id_subcategoria]').val(),
                         'id_itemsubcategoria': 1,//$('select[name=id_itemsubcategoria]').val(),
-                        'cuerpo':$('#cuerpo').val()
+                        'cuerpo':$('#cuerpo').val(),
+                        'id_destinos_para':'['+$("#id_destinos_para").val()+']',
                   },
             success: function (data) 
             {
@@ -46,7 +47,8 @@ $("#CrearDocumento").click(function ()
 
 $("#CrearDocumento_convocatoria").click(function () 
 {   
-alert("dfgdf"); var contenido = CKEDITOR.instances['editor'].getData();//estraer el html
+//alert("convocatoria"); 
+var contenido = CKEDITOR.instances['editor_convocatoria'].getData();//estraer el html
   $('#cuerpo_convocatoria').val(contenido);
         $('#pleaseWaitDialog').modal('show');
          $.ajax
@@ -99,6 +101,7 @@ alert("dfgdf"); var contenido = CKEDITOR.instances['editor'].getData();//estraer
 
 $("#CrearOficioContratacion").click(function () 
 {
+
         $('#pleaseWaitDialog').modal('show');
          $.ajax
         ({
@@ -109,12 +112,13 @@ $("#CrearOficioContratacion").click(function ()
                         'seccion': $('input[name=seccion]').val(),            
                         'contratar': $('select[name=id]').val(),
                         'para': $('select[name=id_para]').val(),
-                        'id_categoria': $('select[name=id_categoria]').val(),
-                        'id_subcategoria': $('select[name=id_subcategoria]').val(),
-                        'id_itemsubcategoria': $('select[name=id_itemsubcategoria]').val(),
+                        'id_categoria': $('#id_categoria').val(),
+                        'id_subcategoria': $('#id_subcategoria').val(),
+                        'id_itemsubcategoria': $('#id_itemsubcategoria').val(),
                         'asignatura':$('select[name=id_asignatura]').val(),
                         'periodo':$('select[name=periodo]').val(),
-                        'concopia':'['+$("#id_dependencias").val()+']'
+                        'concopia':'['+$("#id_dependencias").val()+']',
+                        'tipo_contratacion':$('select[name=tipo_contratacion]').val()
                   },
             success: function (data) 
             {
@@ -125,7 +129,7 @@ $("#CrearOficioContratacion").click(function ()
                    $('#modalError [class= "modal-dialog  modal-sm"]').addClass('modal-success');
                    $('#modalError [class= "modal-title"]').empty().append('Informacion');
                    $('#modalError').modal('show');
-                   location.href=$('#url_base').val()+'/documentos';
+                   location.href=$('#url_base').val()+'/inicio1';
                 }
                 else 
                 {
@@ -144,6 +148,7 @@ $("#CrearOficioContratacion").click(function ()
             }
         });
  });
+
 $("#CorregirDocumento").click(function () 
 {var contenido = CKEDITOR.instances['editor'].getData();//estraer el html
   $('#cuerpo').val(contenido);
